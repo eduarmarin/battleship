@@ -1,0 +1,5 @@
+node_modules/
+package-log.json
+dist/main.js.LICENSE.txt
+webpack.config.js
+package.json
