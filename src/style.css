@@ -9,3 +9,6 @@
     /*border-style: solid;*/
     cursor: pointer;
 }
+table{
+  border-collapse: collapse;
+}
