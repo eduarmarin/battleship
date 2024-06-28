@@ -23,34 +23,44 @@ class gamer {
 	}
 }
 
-function boardship (){
- 
- var boardshipcont = document.createElement('table');
+function boardship (){ // create the board with numbers and letters 
  var a = 0;
- var char = 'A';
- var ascii = char.charCodeAt(0);
- for (var i = 0; i < 8; i++) {
+ var ascii = 64;
+ var boardshipcont = document.createElement('table');
+ for (var i = 0; i < 11; i++) {
     var tr = document.createElement('tr'); // Create a row
-    for (var j = 0; j < 8; j++) {
+    for (var j = 0; j < 11; j++) {
         var td = document.createElement('td');// Create a cell
 				td.classList.add('cell');
-				td.textContent =[i, j];
+				//td.id =[i, j];
+				//td.textContent = "x";
 				tr.appendChild(td);
-				
-				if( i == 0 ) { 
-					td.style.border = "none"; 
-					td.textContent = a++;
-					;
+				if( i == 0 ) { //number first row
+						td.style.border = "none"; 
+						td.textContent = a++;
 				}
-				if( j == 0 ) { 
-					td.style.border = "none"; 
-					td.textContent = String.fromCharCode(ascii++);
+				if( j == 0 ) { // letters first colum
+						td.style.border = "none"; 
+						td.textContent = String.fromCharCode(ascii++);
 				}
-				if ( i == 0 && j == 0){ td.textContent = ""; }
+				if ( i == 0 && j == 0){ td.textContent = ""; } // corner
 		}
 		boardshipcont.appendChild(tr);
  }
  return boardshipcont;
 }
+
+// function getindex (){
+// 		let celllist = document.getElementsByClassName('cell');    // <------------------------------------------------
+// 		for (let i = 0 ; i < celllist.length; i++) {
+// 				celllist[i].addEventListener('click', function () { // listen click on chessboard
+// 						//let indexcell=this.innerHTML; //this is string of 3 index
+// 						console.log("this is i: " + i);
+// 				});
+// 		}
+// }
+// function matrizboard () {
+
+// }
 
 export { boardship };
