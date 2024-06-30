@@ -24,7 +24,8 @@ class gamer {
 }
 
 function boardship (){ // create the board with numbers and letters 
- var a = 0;
+ var a = 0; // var to enumerate the first row
+ var b = 0; // var to create the id cell
  var ascii = 64;
  var boardshipcont = document.createElement('table');
  for (var i = 0; i < 11; i++) {
@@ -32,8 +33,7 @@ function boardship (){ // create the board with numbers and letters
     for (var j = 0; j < 11; j++) {
         var td = document.createElement('td');// Create a cell
 				td.classList.add('cell');
-				//td.id =[i, j];
-				//td.textContent = "x";
+				td.id = (i,j);
 				tr.appendChild(td);
 				if( i == 0 ) { //number first row
 						td.style.border = "none"; 
@@ -50,17 +50,23 @@ function boardship (){ // create the board with numbers and letters
  return boardshipcont;
 }
 
-// function getindex (){
-// 		let celllist = document.getElementsByClassName('cell');    // <------------------------------------------------
-// 		for (let i = 0 ; i < celllist.length; i++) {
-// 				celllist[i].addEventListener('click', function () { // listen click on chessboard
-// 						//let indexcell=this.innerHTML; //this is string of 3 index
-// 						console.log("this is i: " + i);
-// 				});
-// 		}
-// }
+function cellcolor (){
+		let celllist = document.getElementsByClassName('cell');    // <------------------------------------------------
+		for (let i = 12 ; i < celllist.length; i++) {
+				celllist[i].addEventListener('click', function (e) { // listen click on chessboard
+						//let indexcell=this.innerHTML; //this is string of 3 index
+						console.log("this is i: " + i);
+						this.classList.add = "black";
+						//celllist[i].style.backgroundColor = "black";
+						//if 
+				});
+		}
+}
+
+function placeships() {
+    //if(){}
+}
 // function matrizboard () {
-
 // }
 
-export { boardship };
+export { boardship, cellcolor };
