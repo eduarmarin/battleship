@@ -58,30 +58,29 @@ function cellclick (){
 				celllist[i].addEventListener('click', function (e) { // listen click on board
 						console.log("this is i: " + celllist[i].id);
 						this.classList.add = "black";
-						celllist[i].style.backgroundColor = "black";
-						if(x < 3){ // first option to ships of two cell
-							var cell0 = +(celllist[i].id)[0]; // frist at all take the string and convert to number
+						//celllist[i].style.backgroundColor = "black";
+						if(x < 3){ // first ships options of two cell
+							var cell0 = +(celllist[i].id)[0]; // first at all, take the string and convert to number
 							var cell1 = +(celllist[i].id)[2];
 							if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
-							if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell1 = 10}
+							if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
 							if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
 							console.log(cell0 + " " + cell1);
-							for (let j = 0 ; j < 5 ; j++) {  // go to placeships to enable cell to place ship
-								if (j = 0) { placeships(cell0, cell1)}
-								if (j = 1) { placeships(cell0 + 1, cell1)}
-								if (j = 2) { placeships(cell0 - 1, cell1)}
-								if (j = 3) { placeships(cell0, cell1 + 1)}
-								if (j = 4) { placeships(cell0, cell1 - 1)}
+							for (let j = 0 ; j < 5 ; j++) {  // go to "placeships" to enable cells to place each ship cell
+								if (j == 0) { placeships(cell0, cell1)}
+								if (j == 1) { placeships(cell0 + 1, cell1)}
+								if (j == 2) { placeships(cell0 - 1, cell1)}
+								if (j == 3) { placeships(cell0, cell1 + 1)}
+								if (j == 4) { placeships(cell0, cell1 - 1)}
 							}
-							// var firstship = [celllist[i], celllist[i] + 1, celllist[i] -1, celllist[i] +11, celllist[i] -11];
-							// firstship.forEach((item) => placeships(item));
 						} 
 				});
 		}
 }
 
 function placeships(a, b) {
-	console.log("inside placeships a: " + a + " b: " + b)    
+	console.log(a,b);
+	if (a > 0 && a < 11 && b > 0 && b < 11){ document.getElementById([a,b]).style.backgroundColor = 'red'}
 }
 // function matrizboard () {
 // }
