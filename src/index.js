@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import './style.css';
-import { boardship, cellclick} from './ship.js'; 
+import { boardship, cellclick, createships} from './ship.js'; 
 
 function component() {
     const element = document.createElement('div');
@@ -15,3 +15,4 @@ function component() {
   document.body.appendChild(component());
   document.body.appendChild(boardship());
   cellclick();
+  createships();
