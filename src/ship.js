@@ -22,7 +22,7 @@ function createships ()  {
 			sunk: false		
 		}
 	}
-	console.log("create ship ok: " + ship.name == 1)
+	console.log("create ship ok: " + ship.name)
 }
 
 const ship1 = {
@@ -43,7 +43,7 @@ function boardship (){ // create the board with numbers and letters
     for (let j = 0; j < 11; j++) {
         var td = document.createElement('td');// Create a cell
 				td.classList.add('cell');
-				td.id = ([i,j]); // it will be a string
+				td.id = [i, j]; // it will be a string
 				tr.appendChild(td);
 				if( i == 0 ) { //number first row
 						td.style.border = "none"; 
@@ -62,12 +62,13 @@ function boardship (){ // create the board with numbers and letters
  return boardshipcont;
 }
 
-var x = 0;
-var y = 0;
+var x = 0; // clicks
+var y = 0; // count to second cell
 function cellclick (){  // listen clicks on board
 	var celllist = document.getElementsByClassName('cell');
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
+			console.log("celllist: " + celllist[i].id)
 			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
 			var cell1 = +(celllist[i].id)[2];
 			if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
@@ -79,11 +80,16 @@ function cellclick (){  // listen clicks on board
 }
 
 function shipcell2 (cell0, cell1) {     // check cells aroud looking for the same ship
-	console.log("inside shipcell2 " + [cell0,cell1])
-	if ([cell0 + 1,cell1] == ship1.position) { return true }
-	else if ([cell0 - 1,cell1] == ship1.position) { return true }
-	else if ([cell0,cell1 + 1] == ship1.position) { return true }
-	else if ([cell0,cell1 - 1] == ship1.position) { return true }
+	let a = [cell0 + 1, cell1];
+	let b = [cell0 - 1, cell1]; 
+	let c = [cell0, cell1 + 1];
+	let d = [cell0, cell1 - 1];
+	let e = [ship1.position];
+	console.log("a: " + typeof(a) + " b: " + b + " c: " + c + " d: " + d + " e: " + typeof(e))
+	if (a == e) { return true }
+	else if (b == e) { return true }
+	else if (c == e) { return true }
+	else if (d == e) { return true }
 	else { return false }
 }
 
@@ -106,7 +112,7 @@ function placeships(a, b) {
 			y = -1;
 			x++
 		}
-		y++
+		//if (y == 0) { y = 1} else { y = 0}
 	}
 	// if (x > 1 && x < 4) { document.getElementById([a, b]).classList.add('ship2');}
 	// if (x > 3 && x < 6) { document.getElementById([a, b]).classList.add('ship3');}
