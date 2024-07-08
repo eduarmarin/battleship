@@ -11,6 +11,8 @@ class ship{
 		isSunk(){if(hits>=3){console.log("ship's been sunk")} }
 }
 
+//var shipsgamer = [];
+
 function createships ()  {
 	for ( let i = 0; i < 3; i++){
 		const ship = {
@@ -22,7 +24,7 @@ function createships ()  {
 			sunk: false		
 		}
 	}
-	console.log("create ship ok: " + ship.name)
+	console.log("create ship ok: " + ship.name === 2)
 }
 
 const ship1 = {
@@ -51,7 +53,7 @@ function boardship (){ // create the board with numbers and letters
 						td.textContent = a++;
 				}
 				if( j == 0 ) { // letters first colum
-						td.style.border = "none"; 
+								td.style.border = "none"; 
 						td.style.cursor = "none";
 						td.textContent = String.fromCharCode(ascii++);
 				}
@@ -79,13 +81,13 @@ function cellclick (){  // listen clicks on board
 	}
 }
 
-function shipcell2 (cell0, cell1) {     // check cells aroud looking for the same ship
-	let a = [cell0 + 1, cell1];
-	let b = [cell0 - 1, cell1]; 
-	let c = [cell0, cell1 + 1];
-	let d = [cell0, cell1 - 1];
-	let e = [ship1.position];
-	console.log("a: " + typeof(a) + " b: " + b + " c: " + c + " d: " + d + " e: " + typeof(e))
+function shipcell2 (cell0, cell1) {     // check cells aroud looking for the same ship comparing cell id
+	let a = JSON.stringify([cell0 + 1, cell1]);
+	let b = JSON.stringify([cell0 - 1, cell1]); 
+	let c = JSON.stringify([cell0, cell1 + 1]);
+	let d = JSON.stringify([cell0, cell1 - 1]);
+	let e = JSON.stringify(ship1.position);
+	console.log("a: " + a + " b: " + b + " c: " + c + " d: " + d + " e: " + e)
 	if (a == e) { return true }
 	else if (b == e) { return true }
 	else if (c == e) { return true }
@@ -100,19 +102,15 @@ function shipblue (a, b) {
 function placeships(a, b) {  
 	console.log("click ok, y: " + y + " x: " + x + " " + shipcell2(a, b) + " " + ship1.position);
 	if (x < 2) { 
-		if(y == 0){
+		if( ship1.size == 0){
 			shipblue (a, b);
 			ship1.size++;
 			ship1.position = [a,b];
-			x++
 		}
-		if(y == 1 && shipcell2(a, b) == true){
+		if(ship1.size == 1 && shipcell2(a, b) == true){
 			shipblue (a, b);
-			//ship1.size++;
-			y = -1;
-			x++
+			ship1.size++;
 		}
-		//if (y == 0) { y = 1} else { y = 0}
 	}
 	// if (x > 1 && x < 4) { document.getElementById([a, b]).classList.add('ship2');}
 	// if (x > 3 && x < 6) { document.getElementById([a, b]).classList.add('ship3');}
