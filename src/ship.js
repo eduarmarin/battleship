@@ -13,19 +13,32 @@ class ship{
 
 //var shipsgamer = [];
 
-function createships ()  {
-	for ( let i = 0; i < 3; i++){
-		const ship = {
-			name: i,
+var gamersships =  [
+		{
+			name: 1,
+			size: 2,
+			position: [],
+			orientation: "",
+			attacks: 0,
+			sunk: false		
+		},
+		{
+			name: 2,
+			size: 2,
+			position: [],
+			orientation: "",
+			attacks: 0,
+			sunk: false		
+		},
+		{
+			name: 3,
 			size: 2,
 			position: [],
 			orientation: "",
 			attacks: 0,
 			sunk: false		
 		}
-	}
-	console.log("create ship ok: " + ship.name === 2)
-}
+]
 
 const ship1 = {
 	name: "ship1",
@@ -81,12 +94,12 @@ function cellclick (){  // listen clicks on board
 	}
 }
 
-function shipcell2 (cell0, cell1) {     // check cells aroud looking for the same ship comparing cell id
+function shipcell2 (cell0, cell1, shippos) {     // check cells aroud looking for the same ship comparing cell id
 	let a = JSON.stringify([cell0 + 1, cell1]);
 	let b = JSON.stringify([cell0 - 1, cell1]); 
 	let c = JSON.stringify([cell0, cell1 + 1]);
 	let d = JSON.stringify([cell0, cell1 - 1]);
-	let e = JSON.stringify(ship1.position);
+	let e = JSON.stringify(shippos);
 	console.log("a: " + a + " b: " + b + " c: " + c + " d: " + d + " e: " + e)
 	if (a == e) { return true }
 	else if (b == e) { return true }
@@ -106,8 +119,10 @@ function placeships(a, b) {
 			shipblue (a, b);
 			ship1.size++;
 			ship1.position = [a,b];
+			var ship1pos = [a, b];
 		}
-		if(ship1.size == 1 && shipcell2(a, b) == true){
+		if(ship1.size == 1 && shipcell2(a, b, ship1pos) == true){
+			console.log("ship1pos: " + ship1pos)
 			shipblue (a, b);
 			ship1.size++;
 		}
@@ -129,4 +144,4 @@ function removecursor (celllist) {
 // 	return stringid;
 //  }
 
-export { boardship, cellclick, createships};
+export { boardship, cellclick};
