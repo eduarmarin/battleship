@@ -59,7 +59,7 @@ function shipcell2 (cell0, cell1, shippos) {     // check cells aroud looking fo
 	else { return false }
 }
 
-function shipcolorblue (cell0, cell1) {    // check cells aroud looking for anothers ship using blue color as identifier
+function shipcolorblue (cell0, cell1) {    // check cell clicked dont be another ship using blue color as identifier
 	if (document.getElementById([cell0, cell1]).style.backgroundColor == 'lightblue') { return true }
 	else { return false }
 }
@@ -75,7 +75,7 @@ function placeships(a, b) {
 			ship1.position = [a,b];
 			x++;
 		}
-		if(ship1.size == 1 && shipcell2(a, b, ship1.position) == true){
+		if(ship1.size == 1 && shipcell2(a, b, ship1.position) == true && shipcolorblue(a, b) == false){
 			console.log("ship1pos: " + ship1.position)
 			shipblue (a, b);
 			x++;
