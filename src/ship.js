@@ -60,10 +60,7 @@ function shipcell2 (cell0, cell1, shippos) {     // check cells aroud looking fo
 }
 
 function shipcolorblue (cell0, cell1) {    // check cells aroud looking for anothers ship using blue color as identifier
-	     if (document.getElementById([cell0 + 1, cell1]).style.backgroundColor == 'lightblue') { return true }
-	else if (document.getElementById([cell0 - 1, cell1]).style.backgroundColor == 'lightblue') { return true }
-	else if (document.getElementById([cell0, cell1 + 1]).style.backgroundColor == 'lightblue') { return true }
-	else if (document.getElementById([cell0, cell1 - 1]).style.backgroundColor == 'lightblue') { return true }
+	if (document.getElementById([cell0, cell1]).style.backgroundColor == 'lightblue') { return true }
 	else { return false }
 }
 
