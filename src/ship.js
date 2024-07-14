@@ -113,19 +113,18 @@ function shipblue (a, b) {
 }
 
 function placeships(a, b) {  
-	console.log("click ok, y: " + y + " x: " + x + " " + shipcell2(a, b) + " " + ship1.position);
 	if (x < 2) { 
 		if( ship1.size == 0){
 			shipblue (a, b);
-			ship1.size++;
 			ship1.position = [a,b];
-			var ship1pos = [a, b];
+			x++;
 		}
-		if(ship1.size == 1 && shipcell2(a, b, ship1pos) == true){
-			console.log("ship1pos: " + ship1pos)
+		if(ship1.size == 1 && shipcell2(a, b, ship1.position) == true){
+			console.log("ship1pos: " + ship1.position)
 			shipblue (a, b);
-			ship1.size++;
+			x++;
 		}
+		ship1.size = 1;
 	}
 	// if (x > 1 && x < 4) { document.getElementById([a, b]).classList.add('ship2');}
 	// if (x > 3 && x < 6) { document.getElementById([a, b]).classList.add('ship3');}
