@@ -1,53 +1,5 @@
 import { add, create } from 'lodash';
 import './style.css';
-class ship{
-    constructor(name, lenght){
-			this.name = name;
-			this.lenght = lenght;
-		}
-		lenght = 3;
-		hits = 0;
-		hit(){this.hits++;}
-		isSunk(){if(hits>=3){console.log("ship's been sunk")} }
-}
-
-//var shipsgamer = [];
-
-var gamersships =  [
-		{
-			name: 1,
-			size: 2,
-			position: [],
-			orientation: "",
-			attacks: 0,
-			sunk: false		
-		},
-		{
-			name: 2,
-			size: 2,
-			position: [],
-			orientation: "",
-			attacks: 0,
-			sunk: false		
-		},
-		{
-			name: 3,
-			size: 2,
-			position: [],
-			orientation: "",
-			attacks: 0,
-			sunk: false		
-		}
-]
-
-const ship1 = {
-	name: "ship1",
-	size: 0,
-	position: [],
-	orientation: "",
-	attacks: 0,
-	sunk: false
-}
 
 function boardship (){ // create the board with numbers and letters 
  var a = 0; // var to enumerate the first row
@@ -77,8 +29,7 @@ function boardship (){ // create the board with numbers and letters
  return boardshipcont;
 }
 
-var x = 0; // clicks
-var y = 0; // count to second cell
+var x = 0; // clicks ok counter
 function cellclick (){  // listen clicks on board
 	var celllist = document.getElementsByClassName('cell');
 	for (let i = 12 ; i < celllist.length; i++) {
@@ -108,6 +59,14 @@ function shipcell2 (cell0, cell1, shippos) {     // check cells aroud looking fo
 	else { return false }
 }
 
+function shipcolorblue (cell0, cell1) {    // check cells aroud looking for anothers ship using blue color as identifier
+	     if (document.getElementById([cell0 + 1, cell1]).style.backgroundColor == 'lightblue') { return true }
+	else if (document.getElementById([cell0 - 1, cell1]).style.backgroundColor == 'lightblue') { return true }
+	else if (document.getElementById([cell0, cell1 + 1]).style.backgroundColor == 'lightblue') { return true }
+	else if (document.getElementById([cell0, cell1 - 1]).style.backgroundColor == 'lightblue') { return true }
+	else { return false }
+}
+
 function shipblue (a, b) {
 	document.getElementById([a,b]).style.backgroundColor = 'lightblue';
 }
@@ -130,9 +89,59 @@ function placeships(a, b) {
 	// if (x > 3 && x < 6) { document.getElementById([a, b]).classList.add('ship3');}
 }
 
-function removecursor (celllist) {
-	for (let i = 12 ; i < celllist.length; i++) {celllist[i].style.cursor = "none";}
+// function removecursor (celllist) {
+// 	for (let i = 12 ; i < celllist.length; i++) {celllist[i].style.cursor = "none";}
+// }
+
+class ship{
+	constructor(name, lenght){
+		this.name = name;
+		this.lenght = lenght;
+	}
+	lenght = 3;
+	hits = 0;
+	hit(){this.hits++;}
+	isSunk(){if(hits>=3){console.log("ship's been sunk")} }
 }
+
+//var shipsgamer = [];
+
+var gamersships =  [
+	{
+		name: 1,
+		size: 2,
+		position: [],
+		orientation: "",
+		attacks: 0,
+		sunk: false		
+	},
+	{
+		name: 2,
+		size: 2,
+		position: [],
+		orientation: "",
+		attacks: 0,
+		sunk: false		
+	},
+	{
+		name: 3,
+		size: 2,
+		position: [],
+		orientation: "",
+		attacks: 0,
+		sunk: false		
+	}
+]
+
+const ship1 = {
+name: "ship1",
+size: 0,
+position: [],
+orientation: "",
+attacks: 0,
+sunk: false
+}
+
 
 // function tostringid (a, b) {
 // 	let astring = String(a);
