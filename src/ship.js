@@ -36,7 +36,7 @@ function cellclick (){  // listen clicks on board
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
 			test = 1; // this var is just a witnes 
-			console.log("celllist: " + celllist[i].id)
+			//console.log("celllist: " + celllist[i].id)
 			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
 			var cell1 = +(celllist[i].id)[2];
 			if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
@@ -53,7 +53,7 @@ function shipcell2 (cell0, cell1, shippos) {     // check cells aroud looking fo
 	let c = JSON.stringify([cell0, cell1 + 1]);
 	let d = JSON.stringify([cell0, cell1 - 1]);
 	let e = JSON.stringify(shippos);
-	console.log("a: " + a + " b: " + b + " c: " + c + " d: " + d + " e: " + e)
+	//console.log("a: " + a + " b: " + b + " c: " + c + " d: " + d + " e: " + e)
 	if (a == e) { return true }
 	else if (b == e) { return true }
 	else if (c == e) { return true }
@@ -67,54 +67,50 @@ function cellcolorblue (cell0, cell1) {    // check cell clicked dont be another
 }
 
 function shipblue (a, b) {
-	console.log("inside shipblue ");
+	//console.log("inside shipblue ");
 	document.getElementById([a,b]).style.backgroundColor = 'lightblue';
 }
 
 function placeships(a, b) {  
-	if (x < 2 && test == 1) {  //place ship1 cells
+	if (x < 2 && test == 1) {  //--------------place ship1 cells--------------
 		if( ship1.size == 0){
-			//console.log("ship11 ");
 			shipblue (a, b);
 			ship1.position = [a,b];
-			x++;
+			x++;  // x = 1
 		}
 		if(ship1.size == 1 && shipcell2(a, b, ship1.position) == true  && (cellcolorblue(a, b) == false)) {
 			shipblue (a, b);
-			x++;
+			x++;  // x = 2
 		}
 		if (ship1.size == 0){ship1.size = 1;} // dont get into first if again niether second if
-		console.log("x: " + x);
 		test = 0;
 	}
-	if (1 < x < 4 && test == 1) {  //place ship2 cells
-		if( ship2.size == 0){
-			console.log("ship2pos1: " + ship2.position)
+	if (1 < x && x < 4 && test == 1) {  //--------------place ship2 cells--------------
+		if( ship2.size == 0 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
 			ship2.position = [a,b];
-			x++;
+			x++;  // x = 3
 		}
 		if(ship2.size == 1 && shipcell2(a, b, ship2.position) == true && cellcolorblue(a, b) == false){
-			console.log("ship2pos2: " + ship2.position)
 			shipblue (a, b);
-			x++;
+			x++;  // x = 4
 		}
-		if (ship2.size == 0){ship2.size = 1} // dont get into first if again niether second if
+		if (ship2.size == 0){ship2.size = 1}
 		test = 0;
+		console.log("x2: " + x);
 	}
-	if (3 < x < 6 && test == 1) {  //place ship2 cells
-		if( ship3.size == 0){
-			console.log("ship3pos1: " + ship2.position)
+	if (3 < x && x < 6 && test == 1) {  //--------------place ship3 cells--------------
+		console.log("x3: " + x);
+		if( ship3.size == 0 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
 			ship3.position = [a,b];
 			x++;
 		}
 		if(ship3.size == 1 && shipcell2(a, b, ship3.position) == true && cellcolorblue(a, b) == false){
-			console.log("ship3pos2: " + ship2.position)
 			shipblue (a, b);
 			x++;
 		}
-		if (ship3.size == 0){ship3.size = 1} // dont get into first if again niether second if
+		if (ship3.size == 0){ship3.size = 1} 
 		test = 0;
 	}
 }
