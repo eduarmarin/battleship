@@ -30,10 +30,12 @@ function boardship (){ // create the board with numbers and letters
 }
 
 var x = 0; // true clicks counter
+var test = 0; // this var is just a witnes 
 function cellclick (){  // listen clicks on board
 	var celllist = document.getElementsByClassName('cell');
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
+			test = 1; // this var is just a witnes 
 			console.log("celllist: " + celllist[i].id)
 			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
 			var cell1 = +(celllist[i].id)[2];
@@ -65,38 +67,56 @@ function cellcolorblue (cell0, cell1) {    // check cell clicked dont be another
 }
 
 function shipblue (a, b) {
+	console.log("inside shipblue ");
 	document.getElementById([a,b]).style.backgroundColor = 'lightblue';
 }
 
 function placeships(a, b) {  
-	if (x < 2) {  //place ship1 cells
+	if (x < 2 && test == 1) {  //place ship1 cells
 		if( ship1.size == 0){
+			//console.log("ship11 ");
 			shipblue (a, b);
 			ship1.position = [a,b];
 			x++;
 		}
-		if(ship1.size == 1 && shipcell2(a, b, ship1.position) == true && cellcolorblue(a, b) == false){
-			console.log("ship1pos: " + ship1.position)
+		if(ship1.size == 1 && shipcell2(a, b, ship1.position) == true  && (cellcolorblue(a, b) == false)) {
 			shipblue (a, b);
 			x++;
 		}
-		if (ship1.size == 0){ship1.size == 1} // dont get into first if again niether second if
-		console.log("x: " + x)
+		if (ship1.size == 0){ship1.size = 1;} // dont get into first if again niether second if
+		console.log("x: " + x);
+		test = 0;
 	}
-	if (1 < x < 4) {  //place ship2 cells
+	if (1 < x < 4 && test == 1) {  //place ship2 cells
 		if( ship2.size == 0){
+			console.log("ship2pos1: " + ship2.position)
 			shipblue (a, b);
 			ship2.position = [a,b];
 			x++;
 		}
 		if(ship2.size == 1 && shipcell2(a, b, ship2.position) == true && cellcolorblue(a, b) == false){
-			console.log("ship2pos: " + ship2.position)
+			console.log("ship2pos2: " + ship2.position)
 			shipblue (a, b);
 			x++;
 		}
-		if (ship2.size == 0){ship2.size == 1} // dont get into first if again niether second if
+		if (ship2.size == 0){ship2.size = 1} // dont get into first if again niether second if
+		test = 0;
 	}
-	// if (x > 3 && x < 6) { document.getElementById([a, b]).classList.add('ship3');}
+	if (3 < x < 6 && test == 1) {  //place ship2 cells
+		if( ship3.size == 0){
+			console.log("ship3pos1: " + ship2.position)
+			shipblue (a, b);
+			ship3.position = [a,b];
+			x++;
+		}
+		if(ship3.size == 1 && shipcell2(a, b, ship3.position) == true && cellcolorblue(a, b) == false){
+			console.log("ship3pos2: " + ship2.position)
+			shipblue (a, b);
+			x++;
+		}
+		if (ship3.size == 0){ship3.size = 1} // dont get into first if again niether second if
+		test = 0;
+	}
 }
 
 // function removecursor (celllist) {
@@ -153,14 +173,22 @@ sunk: false
 }
 
 const ship2 = {
-	name: "ship1",
+	name: "ship2",
 	size: 0,
 	position: [],
 	orientation: "",
 	attacks: 0,
 	sunk: false
 	}
-	
+
+const ship3 = {
+	name: "ship3",
+	size: 0,
+	position: [],
+	orientation: "",
+	attacks: 0,
+	sunk: false
+	}
 
 // function tostringid (a, b) {
 // 	let astring = String(a);
