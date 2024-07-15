@@ -29,7 +29,7 @@ function boardship (){ // create the board with numbers and letters
  return boardshipcont;
 }
 
-var x = 0; // clicks ok counter
+var x = 0; // true clicks counter
 function cellclick (){  // listen clicks on board
 	var celllist = document.getElementsByClassName('cell');
 	for (let i = 12 ; i < celllist.length; i++) {
@@ -59,7 +59,7 @@ function shipcell2 (cell0, cell1, shippos) {     // check cells aroud looking fo
 	else { return false }
 }
 
-function shipcolorblue (cell0, cell1) {    // check cell clicked dont be another ship using blue color as identifier
+function cellcolorblue (cell0, cell1) {    // check cell clicked dont be another ship using blue color as identifier
 	if (document.getElementById([cell0, cell1]).style.backgroundColor == 'lightblue') { return true }
 	else { return false }
 }
@@ -69,20 +69,33 @@ function shipblue (a, b) {
 }
 
 function placeships(a, b) {  
-	if (x < 2) { 
+	if (x < 2) {  //place ship1 cells
 		if( ship1.size == 0){
 			shipblue (a, b);
 			ship1.position = [a,b];
 			x++;
 		}
-		if(ship1.size == 1 && shipcell2(a, b, ship1.position) == true && shipcolorblue(a, b) == false){
+		if(ship1.size == 1 && shipcell2(a, b, ship1.position) == true && cellcolorblue(a, b) == false){
 			console.log("ship1pos: " + ship1.position)
 			shipblue (a, b);
 			x++;
 		}
-		ship1.size = 1;
+		if (ship1.size == 0){ship1.size == 1} // dont get into first if again niether second if
+		console.log("x: " + x)
 	}
-	// if (x > 1 && x < 4) { document.getElementById([a, b]).classList.add('ship2');}
+	if (1 < x < 4) {  //place ship2 cells
+		if( ship2.size == 0){
+			shipblue (a, b);
+			ship2.position = [a,b];
+			x++;
+		}
+		if(ship2.size == 1 && shipcell2(a, b, ship2.position) == true && cellcolorblue(a, b) == false){
+			console.log("ship2pos: " + ship2.position)
+			shipblue (a, b);
+			x++;
+		}
+		if (ship2.size == 0){ship2.size == 1} // dont get into first if again niether second if
+	}
 	// if (x > 3 && x < 6) { document.getElementById([a, b]).classList.add('ship3');}
 }
 
@@ -103,7 +116,7 @@ class ship{
 
 //var shipsgamer = [];
 
-var gamersships =  [
+var gamersships =  [ // create ship by fubction still in constuction
 	{
 		name: 1,
 		size: 2,
@@ -139,6 +152,15 @@ attacks: 0,
 sunk: false
 }
 
+const ship2 = {
+	name: "ship1",
+	size: 0,
+	position: [],
+	orientation: "",
+	attacks: 0,
+	sunk: false
+	}
+	
 
 // function tostringid (a, b) {
 // 	let astring = String(a);
