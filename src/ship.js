@@ -89,6 +89,7 @@ function placeships(a, b) {
 		}
 		test = 0;
 		console.log("ship1")
+		ship1.sizeok();
 	}
 	if (1 < x && x < 4 && test == 1) {  //--------------place ship2 cells--------------
 		if( ship2.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
@@ -109,7 +110,6 @@ function placeships(a, b) {
 		console.log("ship2");
 	}
 	if (3 < x && x < 6 && test == 1) {  //--------------place ship3 cells--------------
-		console.log("x3: " + x);
 		if( ship3.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
 			ship3.position = [a,b];
@@ -127,20 +127,30 @@ function placeships(a, b) {
 		test = 0;
 		console.log("ship3");
 	}
-	// if (5 < x && x < 9 && test == 1) {  //--------------place ship3 cells--------------
-	// 	console.log("x4: " + x);
-	// 	if( ship4.size == 0 && (cellcolorblue(a, b) == false)){
-	// 		shipblue (a, b);
-	// 		ship3.position = [a,b];
-	// 		x++;
-	// 	}
-	// 	if(ship4.size == 1 && shipcell2(a, b, ship3.position) == true && cellcolorblue(a, b) == false){
-	// 		shipblue (a, b);
-	// 		x++;
-	// 	}
-	// 	if (ship3.size == 0 && (cellcolorblue(a, b) == false)){ship3.size = 1} 
-	// 	test = 0;
-	// }
+	if (5 < x && x < 9 && test == 1) {  //--------------place ship3 cells--------------
+		if( ship4.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
+			shipblue (a, b);
+			ship3.position = [a,b];
+			x++;
+			test = 0;
+			ship4.size = 1;
+			console.log("shipcell 41 " );
+		}
+		if(ship4.size == 1 && test == 1 && shipcell2(a, b, ship3.position) == true && cellcolorblue(a, b) == false){
+			shipblue (a, b);
+			x++;
+			test = 0;
+			ship4.size = 2;
+			console.log("shipcell 42 " );
+		}
+		if(ship4.size == 2 && test == 1 && shipcell2(a, b, ship3.position) == true && cellcolorblue(a, b) == false){
+			shipblue (a, b);
+			x++;
+			test = 0;
+			console.log("shipcell 42 " );
+		}
+		test = 0;
+	}
 }
 
 // function removecursor (celllist) {
@@ -192,9 +202,11 @@ size: 0,
 position: [],
 orientation: "",
 attacks: 0,
-sunk: false
-}
+sunk: false,
+sizeok (){if (ship1.size == 1){console.log("ship1 size ok")}}
 
+}
+//ship1.sizeok();
 const ship2 = {
 	name: "ship2",
 	size: 0,
