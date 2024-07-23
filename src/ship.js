@@ -1,7 +1,7 @@
 import { add, create } from 'lodash';
 import './style.css';
 
-var x = 0; // true clicks counter
+var x = 4; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
 
 function boardship (){ // ----------------------------------create the board with numbers and letters ----------------------------
@@ -128,26 +128,27 @@ function placeships(a, b) {
 		console.log("ship3");
 	}
 	if (5 < x && x < 9 && test == 1) {  //--------------place ship3 cells--------------
+		console.log("ship three cells")
 		if( ship4.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
-			ship3.position = [a,b];
-			x++;
+			ship4.position = [a,b];
+			x++; // x = 7
 			test = 0;
 			ship4.size = 1;
 			console.log("shipcell 41 " );
 		}
-		if(ship4.size == 1 && test == 1 && shipcell2(a, b, ship3.position) == true && cellcolorblue(a, b) == false){
+		if(ship4.size == 1 && test == 1 && shipcell2(a, b, ship4.position) == true && cellcolorblue(a, b) == false){
 			shipblue (a, b);
-			x++;
+			x++; // x = 8
 			test = 0;
 			ship4.size = 2;
 			console.log("shipcell 42 " );
 		}
-		if(ship4.size == 2 && test == 1 && shipcell2(a, b, ship3.position) == true && cellcolorblue(a, b) == false){
+		if(ship4.size == 2 && test == 1 && shipcell2(a, b, ship4.position) == true && cellcolorblue(a, b) == false){
 			shipblue (a, b);
-			x++;
+			x++; // x = 9
 			test = 0;
-			console.log("shipcell 42 " );
+			console.log("shipcell 43 " );
 		}
 		test = 0;
 	}
