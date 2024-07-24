@@ -71,12 +71,13 @@ function cellcolorblue3 (cell0, cell1, shippos) {    // ----------------3 cells 
 	let b = document.getElementById([cell0 - 1, cell1]).style.backgroundColor
 	let c = document.getElementById([cell0, cell1 + 1]).style.backgroundColor
 	let d = document.getElementById([cell0, cell1 - 1]).style.backgroundColor
-
-let e = shippos[0] - 1;
-let f = shippos[0] + 1;
-let g = shippos[1] - 1;
-let h = shippos[1] + 1;
-
+	let e = cell0 - shippos[0]; // e = - 1 --> up ;  e =  1 --> down
+	//let f = cell0 - shippos[0];
+	let g = cell1 - shippos[1]; // g = - 1 --> left ;  e =  1 --> right
+	//let h = shippos[1];
+	console.log("cell0 " + cell0 + " cell1 " + cell1 + " shippos " + shippos)
+	console.log("cellcolorblue3 " + "a: " + a + " b: " + b + " c: " + c + " d: " + d)
+	console.log("perpen" + " e: " + e + " g: " + g)
 	if (document.getElementById([cell0, cell1]).style.backgroundColor == 'lightblue') { return true }
 	else { return false }
 }
