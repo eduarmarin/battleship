@@ -71,15 +71,22 @@ function cellcolorblue3 (cell0, cell1, shippos) {    // ----------------3 cells 
 	let b = document.getElementById([cell0 - 1, cell1]).style.backgroundColor
 	let c = document.getElementById([cell0, cell1 + 1]).style.backgroundColor
 	let d = document.getElementById([cell0, cell1 - 1]).style.backgroundColor
+
 	let e = cell0 - shippos[0]; // e = - 1 --> up ;  e =  1 --> down
-	//let f = cell0 - shippos[0];
 	let g = cell1 - shippos[1]; // g = - 1 --> left ;  e =  1 --> right
-	//let h = shippos[1];
+
+	if (a == "lightblue" && g == 1) { return false }
+	else if (b == "lightblue" && g == - 1) { return false }
+	else if (c == "lightblue" && e == - 1) { return false }
+	else if (c == "lightblue" && e == 1) { return false }
+	else { return true }
+
 	console.log("cell0 " + cell0 + " cell1 " + cell1 + " shippos " + shippos)
 	console.log("cellcolorblue3 " + "a: " + a + " b: " + b + " c: " + c + " d: " + d)
 	console.log("perpen" + " e: " + e + " g: " + g)
-	if (document.getElementById([cell0, cell1]).style.backgroundColor == 'lightblue') { return true }
-	else { return false }
+
+	// if (document.getElementById([cell0, cell1]).style.backgroundColor == 'lightblue') { return true }
+	// else { return false }
 }
 
 function shipblue (a, b) {  // -------------------------------paint cell with lightblue-------------------------------
@@ -132,16 +139,16 @@ function placeships(a, b) {
 			x++; // v = 5
 			test = 0;
 			ship3.size = 1;
-			console.log("shipcell 31");
+			//console.log("shipcell 31");
 		}
 		if(ship3.size == 1 && test == 1 && shipcell2(a, b, ship3.position) == true && cellcolorblue(a, b) == false){
 			shipblue (a, b);
 			x++; // x = 6
 			test = 0;
-			console.log("shipcell 32");
+			//console.log("shipcell 32");
 		}
 		test = 0;
-		console.log("ship3");
+		//console.log("ship3");
 	}
 	if (5 < x && x < 9 && test == 1) {  //--------------place ship4 cells --------------
 		if( ship4.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
