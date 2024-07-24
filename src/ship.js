@@ -75,31 +75,28 @@ function cellcolorblue3 (cell0, cell1, shippos) {    // ----------------3 cells 
 	let e = cell0 - shippos[0]; // e = - 1 --> up ;  e =  1 --> down
 	let g = cell1 - shippos[1]; // g = - 1 --> left ;  e =  1 --> right
 
-	if (g == 1) { 
-		if (a == "lightblue") { return false } else { return true }
-	}
-	if (g == - 1) {
-		if (b == "lightblue") { return false } else { return true }
-	}
-	if (e == - 1) { 
-		if (c == "lightblue") { return false } else { return true }
-	}
-	if ( e == 1) { 
-		if (d == "lightblue") { return false } else { return true }
-	}
-	// if (a == "lightblue" && g == 1) { return false }
-	// else if (b == "lightblue" && g == - 1) { return false }
-	// else if (c == "lightblue" && e == - 1) { return false }
-	// else if (c == "lightblue" && e == 1) { return false }
-	// else { return true }
-
-
 	console.log("cell0 " + cell0 + " cell1 " + cell1 + " shippos " + shippos)
 	console.log("cellcolorblue3 " + "a: " + a + " b: " + b + " c: " + c + " d: " + d)
 	console.log("perpen" + " e: " + e + " g: " + g)
 
-	// if (document.getElementById([cell0, cell1]).style.backgroundColor == 'lightblue') { return true }
-	// else { return false }
+	if (g == 1) { 
+		if (d == "lightblue") { return false } else { return true }
+	}
+	if (g == - 1) {
+		if (c == "lightblue") { return false } else { return true }
+	}
+	if (e == - 1) { 
+		if (a == "lightblue") { return false } else { return true }
+	}
+	if ( e == 1) { 
+		if (b == "lightblue") { return false } else { return true }
+	}
+	// if (g == 1 && a == "lightblue") { return false }
+	// else if (g == - 1 && == "lightblue") { return false }
+	// else if (e == - 1 && c == "lightblue") { return false }
+	// else if (e == 1 && c == "lightblue") { return false }
+	// else { return true }
+	
 }
 
 function shipblue (a, b) {  // -------------------------------paint cell with lightblue-------------------------------
@@ -172,14 +169,14 @@ function placeships(a, b) {
 			ship4.size = 1;
 			console.log("shipcell 41 " );
 		}
-		if(ship4.size == 1 && test == 1 && shipcell2(a, b, ship4.position) == true && cellcolorblue3(a, b, ship4.position) == false){
+		if(ship4.size == 1 && test == 1 && cellcolorblue3(a, b, ship4.position) == true){
 			shipblue (a, b);
 			x++; // x = 8
 			test = 0;
 			ship4.size = 2;
 			console.log("shipcell 42 " );
 		}
-		if(ship4.size == 2 && test == 1 && shipcell2(a, b, ship4.position) == true && cellcolorblue3(a, b) == false){
+		if(ship4.size == 2 && test == 1 && cellcolorblue3(a, b) == false){
 			shipblue (a, b);
 			x++; // x = 9
 			test = 0;
