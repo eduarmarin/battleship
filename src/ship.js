@@ -75,11 +75,24 @@ function cellcolorblue3 (cell0, cell1, shippos) {    // ----------------3 cells 
 	let e = cell0 - shippos[0]; // e = - 1 --> up ;  e =  1 --> down
 	let g = cell1 - shippos[1]; // g = - 1 --> left ;  e =  1 --> right
 
-	if (a == "lightblue" && g == 1) { return false }
-	else if (b == "lightblue" && g == - 1) { return false }
-	else if (c == "lightblue" && e == - 1) { return false }
-	else if (c == "lightblue" && e == 1) { return false }
-	else { return true }
+	if (g == 1) { 
+		if (a == "lightblue") { return false } else { return true }
+	}
+	if (g == - 1) {
+		if (b == "lightblue") { return false } else { return true }
+	}
+	if (e == - 1) { 
+		if (c == "lightblue") { return false } else { return true }
+	}
+	if ( e == 1) { 
+		if (d == "lightblue") { return false } else { return true }
+	}
+	// if (a == "lightblue" && g == 1) { return false }
+	// else if (b == "lightblue" && g == - 1) { return false }
+	// else if (c == "lightblue" && e == - 1) { return false }
+	// else if (c == "lightblue" && e == 1) { return false }
+	// else { return true }
+
 
 	console.log("cell0 " + cell0 + " cell1 " + cell1 + " shippos " + shippos)
 	console.log("cellcolorblue3 " + "a: " + a + " b: " + b + " c: " + c + " d: " + d)
