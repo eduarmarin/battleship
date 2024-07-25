@@ -67,29 +67,29 @@ function cellcolorblue (cell0, cell1) {    // ----------------2 cells ships; che
 }
 
 function cellcolorblue3 (cell0, cell1, shippos) {    // ----------------3 cells ships; check cell clicked dont be another ship using blue color as identifier
-	let a = document.getElementById([cell0 + 1, cell1]).style.backgroundColor
-	let b = document.getElementById([cell0 - 1, cell1]).style.backgroundColor
-	let c = document.getElementById([cell0, cell1 + 1]).style.backgroundColor
-	let d = document.getElementById([cell0, cell1 - 1]).style.backgroundColor
+	let a = document.getElementById([cell0 + 1, cell1]).style.backgroundColor // down
+	let b = document.getElementById([cell0 - 1, cell1]).style.backgroundColor // up
+	let c = document.getElementById([cell0, cell1 + 1]).style.backgroundColor // right
+	let d = document.getElementById([cell0, cell1 - 1]).style.backgroundColor // left
 
 	let e = cell0 - shippos[0]; // e = - 1 --> up ;  e =  1 --> down
-	let g = cell1 - shippos[1]; // g = - 1 --> left ;  e =  1 --> right
+	let g = cell1 - shippos[1]; // g = - 1 --> left ;  g =  1 --> right
 
 	console.log("cell0 " + cell0 + " cell1 " + cell1 + " shippos " + shippos)
 	console.log("cellcolorblue3 " + "a: " + a + " b: " + b + " c: " + c + " d: " + d)
 	console.log("perpen" + " e: " + e + " g: " + g)
 
-	if (g == 1) { 
-		if (d == "lightblue") { return false } else { return true }
+	if (g == 1 && e == 0) { 
+		if (c == "lightblue" || cell1 == 10) { return false } else { return true }
 	}
-	if (g == - 1) {
-		if (c == "lightblue") { return false } else { return true }
+	if (g == - 1 && e == 0) {
+		if (d == "lightblue" || cell1 == 1) { return false } else { return true }
 	}
-	if (e == - 1) { 
-		if (a == "lightblue") { return false } else { return true }
+	if (e == - 1 && g == 0) { 
+		if (b == "lightblue" || cell0 == 1) { return false } else { return true }
 	}
-	if ( e == 1) { 
-		if (b == "lightblue") { return false } else { return true }
+	if ( e == 1 && g == 0) { 
+		if (a == "lightblue" || cell0 == 10) { return false } else { return true }
 	}
 	// if (g == 1 && a == "lightblue") { return false }
 	// else if (g == - 1 && == "lightblue") { return false }
