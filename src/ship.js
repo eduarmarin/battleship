@@ -3,6 +3,7 @@ import './style.css';
 
 var x = 4; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
+var perp = []; // pern var in three cell ship
 
 function boardship (){ // ----------------------------------create the board with numbers and letters ----------------------------
  var a = 0; // var to enumerate the first row
@@ -68,37 +69,46 @@ function cellcolorblue (cell0, cell1) {    // ----------------2 cells ships; che
 
 function cellcolorblue3 (cell0, cell1, shippos) {    // ----------------3 cells ships; check cell clicked dont be another ship using blue color as identifier
 	try{var aa = document.getElementById([cell0 + 1, cell1]).style.backgroundColor} // down
-	 catch(err){console.log("down " + err.name);} finally {aa = "lightblue"}
+	 catch(err){aa = "lightblue";} //finally {aa = "lightblue"}
 	let b = document.getElementById([cell0 - 1, cell1]).style.backgroundColor // up
 	try{var cc = document.getElementById([cell0, cell1 + 1]).style.backgroundColor} // right
-	 catch(err){console.log("down " + err.name);} finally {cc = "lightblue"}
+	 catch(err){cc = "lightblue";} //finally {cc = "lightblue"}
 	let d = document.getElementById([cell0, cell1 - 1]).style.backgroundColor // left
 
 	let e = cell0 - shippos[0]; // e = - 1 --> up ;  e =  1 --> down
 	let g = cell1 - shippos[1]; // g = - 1 --> left ;  g =  1 --> right
 
-	console.log("cell0 " + cell0 + " cell1 " + cell1 + " shippos " + shippos)
-	console.log("cellcolorblue3 " + "a: " + aa + " b: " + b + " c: " + cc + " d: " + d)
-	console.log("perpen" + " e: " + e + " g: " + g)
-
+	// console.log("cell0 " + cell0 + " cell1 " + cell1 + " shippos " + shippos)
+	// console.log("cellcolorblue3 " + "a: " + aa + " b: " + b + " c: " + cc + " d: " + d)
+	// console.log("perpen" + " e: " + e + " g: " + g)
+	
 	if (g == 1 && e == 0) { 
-		if (cc == "lightblue") { return false } else { return true }
+		if (cc == "lightblue") { return false } else { perp[0] = 1; return true }
 	}
 	if (g == - 1 && e == 0) {
-		if (d == "lightblue") { return false } else { return true }
+		if (d == "lightblue") { return false } else { perp[0] = 2; return true }
 	}
 	if (e == - 1 && g == 0) { 
-		if (b == "lightblue") { return false } else { return true }
+		if (b == "lightblue") { return false } else { perp[0] = 3; return true }
 	}
 	if ( e == 1 && g == 0) { 
-		if (aa == "lightblue") { return false } else { return true }
+		if (aa == "lightblue") { return false } else { perp[0] = 4; return true }
 	}
-	// if (g == 1 && a == "lightblue") { return false }
-	// else if (g == - 1 && == "lightblue") { return false }
-	// else if (e == - 1 && c == "lightblue") { return false }
-	// else if (e == 1 && c == "lightblue") { return false }
-	// else { return true }
-	
+}
+
+function cellcolorblue33 (cell0, cell1, shippos){
+	if (perp[0] == 1) { // cell0, cell1 + 1
+		if (cell0 == shippos[0] && cell1 == shippos[1] + 1){return true} else{return false}
+	}
+	if (perp[0] == 2) { // cell0, cell1 - 1
+		if (cell0 == shippos[0] && cell1 == shippos[1] - 1){return true} else{return false}
+	}
+	if (perp[0] == 3) { // cell0 - 1, cell1
+		if (cell0 == shippos[0] - 1 && cell1 == shippos[1]){return true} else{return false}
+	}
+	if (perp[0] == 4) { // cell0 + 1, cell1
+		if (cell0 == shippos[0] + 1 && cell1 == shippos[1]){return true} else{return false}
+	}
 }
 
 function shipblue (a, b) {  // -------------------------------paint cell with lightblue-------------------------------
@@ -107,7 +117,7 @@ function shipblue (a, b) {  // -------------------------------paint cell with li
 }
 
 function placeships(a, b) {  
-	if (x < 2) {  //--------------place ship1 --------------
+	if (x < 2) {  //------------------------------------place ship1 --------------
 		if( ship1.size == 0 && test == 1){
 			shipblue (a, b);
 			ship1.position = [a,b];
@@ -162,7 +172,7 @@ function placeships(a, b) {
 		test = 0;
 		//console.log("ship3");
 	}
-	if (5 < x && x < 9 && test == 1) {  //--------------place ship4 cells --------------
+	if (5 < x && x < 9 && test == 1) {  //--------------place ship4 ---------------
 		if( ship4.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
 			ship4.position = [a,b]; // ship4.position.push([a,b]);
@@ -173,12 +183,13 @@ function placeships(a, b) {
 		}
 		if(ship4.size == 1 && test == 1 && cellcolorblue3(a, b, ship4.position) == true){
 			shipblue (a, b);
+			ship4.position = [a,b];
 			x++; // x = 8
 			test = 0;
 			ship4.size = 2;
 			console.log("shipcell 42 " );
 		}
-		if(ship4.size == 2 && test == 1 && cellcolorblue3(a, b, ship4.position) == true){
+		if(ship4.size == 2 && test == 1 && cellcolorblue33(a, b, ship4.position) == true){
 			shipblue (a, b);
 			x++; // x = 9
 			test = 0;
