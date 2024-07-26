@@ -3,11 +3,11 @@ import './style.css';
 
 var x = 4; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
-var perp = []; // pern var in three cell shipñ
+var perp = []; // pern var in three cell ship
+var anum = 0; // var to enumerate the first row
+var ascii = 64; // var to put letters in the first column
 
 function boardship (){ // ----------------------------------create the board with numbers and letters ----------------------------
- var a = 0; // var to enumerate the first row
- var ascii = 64; // var to put letters in the first column
  var boardshipcont = document.createElement('table');
  for (let i = 0; i < 11; i++) {
     var tr = document.createElement('tr'); // Create a row
@@ -16,13 +16,13 @@ function boardship (){ // ----------------------------------create the board wit
 				td.classList.add('cell');
 				td.id = [i, j]; // it will be a string
 				tr.appendChild(td);
-				if( i == 0 ) { //number first row
+				if( i == 0 ) { //numbers first row
 						td.style.border = "none"; 
 						td.style.cursor = "none";
-						td.textContent = a++;
+						td.textContent = anum++;
 				}
 				if( j == 0 ) { // letters first colum
-								td.style.border = "none"; 
+						td.style.border = "none"; 
 						td.style.cursor = "none";
 						td.textContent = String.fromCharCode(ascii++);
 				}
@@ -33,7 +33,7 @@ function boardship (){ // ----------------------------------create the board wit
  return boardshipcont;
 }
 
-function cellclick (){  // -------------------------------listen clicks on board----------------------------------
+function cellclick (){  // ---------------------------------listen clicks on board----------------------------------
 	var celllist = document.getElementsByClassName('cell');
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
@@ -48,7 +48,7 @@ function cellclick (){  // -------------------------------listen clicks on board
 	}
 }
 
-function shipcell2 (cell0, cell1, shippos) {   // ---------------check cells aroud looking for the same ship comparing cell id---------------------
+function shipcell2 (cell0, cell1, shippos) {   //-----------check cells aroud looking for the same ship comparing cell id---------------------
 	let a = JSON.stringify([cell0 + 1, cell1]);
 	let b = JSON.stringify([cell0 - 1, cell1]); 
 	let c = JSON.stringify([cell0, cell1 + 1]);
@@ -62,12 +62,12 @@ function shipcell2 (cell0, cell1, shippos) {   // ---------------check cells aro
 	else { return false }
 }
 
-function cellcolorblue (cell0, cell1) {    // ----------------2 cells ships; check cell clicked dont be another ship using blue color as identifier
+function cellcolorblue (cell0, cell1) {   //----------------2 cells ships; check cell clicked dont be another ship using blue color as identifier
 	if (document.getElementById([cell0, cell1]).style.backgroundColor == 'lightblue') { return true }
 	else { return false }
 }
 
-function cellcolorblue3 (cell0, cell1, shippos) {    // ----------------3 cells ships; check cell clicked dont be another ship using blue color as identifier
+function cellcolorblue3 (cell0, cell1, shippos) {  //-------3 cells ships; check cell clicked dont be another ship using blue color as identifier
 	try{var aa = document.getElementById([cell0 + 1, cell1]).style.backgroundColor} // down
 	 catch(err){aa = "lightblue";} //finally {aa = "lightblue"}
 	let b = document.getElementById([cell0 - 1, cell1]).style.backgroundColor // up
@@ -96,7 +96,7 @@ function cellcolorblue3 (cell0, cell1, shippos) {    // ----------------3 cells 
 	}
 }
 
-function cellcolorblue33 (cell0, cell1, shippos){
+function cellcolorblue33 (cell0, cell1, shippos){ //--------third cell of three cells ships
 	if (perp[0] == 1) { // cell0, cell1 + 1
 		if (cell0 == shippos[0] && cell1 == shippos[1] + 1){return true} else{return false}
 	}
@@ -111,12 +111,12 @@ function cellcolorblue33 (cell0, cell1, shippos){
 	}
 }
 
-function shipblue (a, b) {  // -------------------------------paint cell with lightblue-------------------------------
+function shipblue (a, b) {  // -----------------------------paint cell with lightblue-------------------------------
 	//console.log("inside shipblue ");
 	document.getElementById([a,b]).style.backgroundColor = 'lightblue';
 }
 
-function placeships(a, b) {  
+function placeships(a, b) {  //-----------------------------place all ships-----------------------------------------
 	if (x < 2) {  //------------------------------------place ship1 --------------
 		if( ship1.size == 0 && test == 1){
 			shipblue (a, b);
@@ -198,7 +198,7 @@ function placeships(a, b) {
 		test = 0;
 		console.log("ship 41")
 	}
-	if (8 < x && x < 12 && test == 1) {  //--------------place ship5 ---------------
+	if (8 < x && x < 12 && test == 1) { //--------------place ship5 ---------------
 		if( ship5.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
 			ship5.position = [a,b]; // ship4.position.push([a,b]);
@@ -226,6 +226,57 @@ function placeships(a, b) {
 	}
 }
 
+const ship1 = { // -----------------------------------------two cells ships ------------------------------------
+name: "ship1",
+size: 0,
+position: [],
+orientation: "",
+attacks: 0,
+sunk: false,
+sizeok1 (){if (ship1.size == 1){console.log("ship1 size ok")}}
+
+}
+
+const ship2 = {
+	name: "ship2",
+	size: 0,
+	position: [],
+	orientation: "",
+	attacks: 0,
+	sunk: false
+	}
+
+const ship3 = {
+	name: "ship3",
+	size: 0,
+	position: [],
+	orientation: "",
+	attacks: 0,
+	sunk: false
+	}
+
+const ship4 = { // -----------------------------------------trhee cells ships ----------------------------
+name: "ship4",
+size: 0,
+position: [],
+orientation: "",
+attacks: 0,
+sunk: false
+}
+
+const ship5 = {
+	name: "ship5",
+	size: 0,
+	position: [],
+	orientation: "",
+	attacks: 0,
+	sunk: false,
+	sizeok5 (){if (ship5.size == 2){console.log("ship5 size ok")}}
+	}
+
+//ship1.sizeok1();
+ship5.sizeok5();
+
 class ship{  // create ship by fubction still in constuction
 	constructor(name, lenght){
 		this.name = name;
@@ -236,7 +287,6 @@ class ship{  // create ship by fubction still in constuction
 	hit(){this.hits++;}
 	isSunk(){if(hits>=3){console.log("ship's been sunk")} }
 }
-
 
 var gamersships =  [ // create ship by fubction still in constuction
 	{
@@ -265,60 +315,6 @@ var gamersships =  [ // create ship by fubction still in constuction
 	}
 ]
 
-const ship1 = { // -------------- two cells ships ------------------------------------
-name: "ship1",
-size: 0,
-position: [],
-orientation: "",
-attacks: 0,
-sunk: false,
-sizeok (){if (ship1.size == 1){console.log("ship1 size ok")}}
 
-}
-//ship1.sizeok();
-const ship2 = {
-	name: "ship2",
-	size: 0,
-	position: [],
-	orientation: "",
-	attacks: 0,
-	sunk: false
-	}
 
-const ship3 = {
-	name: "ship3",
-	size: 0,
-	position: [],
-	orientation: "",
-	attacks: 0,
-	sunk: false
-	}
-
-const ship4 = { // -------------- trhee cells ships ----------------------------
-name: "ship4",
-size: 0,
-position: [],
-orientation: "",
-attacks: 0,
-sunk: false
-}
-
-const ship5 = {
-	name: "ship5",
-	size: 0,
-	position: [],
-	orientation: "",
-	attacks: 0,
-	sunk: false
-	}
-
-// function tostringid (a, b) {
-// 	let astring = String(a);
-// 	let bstring = String(b);
-// 	let stringid = astring + "," + bstring;
-// 	stringid = String(stringid)
-// 	console.log("stringid typeof: " + stringid);
-// 	return stringid;
-//  }
-
-export { boardship, cellclick};
+export { boardship, cellclick };
