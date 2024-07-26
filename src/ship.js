@@ -3,7 +3,7 @@ import './style.css';
 
 var x = 4; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
-var perp = []; // pern var in three cell ship
+var perp = []; // pern var in three cell shipñ
 
 function boardship (){ // ----------------------------------create the board with numbers and letters ----------------------------
  var a = 0; // var to enumerate the first row
@@ -181,7 +181,7 @@ function placeships(a, b) {
 			ship4.size = 1;
 			console.log("shipcell 41 " );
 		}
-		if(ship4.size == 1 && test == 1 && cellcolorblue3(a, b, ship4.position) == true){
+		if(ship4.size == 1 && test == 1 && cellcolorblue (a, b) == false && cellcolorblue3(a, b, ship4.position) == true){
 			shipblue (a, b);
 			ship4.position = [a,b];
 			x++; // x = 8
@@ -198,13 +198,35 @@ function placeships(a, b) {
 		test = 0;
 		console.log("ship 41")
 	}
+	if (8 < x && x < 12 && test == 1) {  //--------------place ship5 ---------------
+		if( ship5.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
+			shipblue (a, b);
+			ship5.position = [a,b]; // ship4.position.push([a,b]);
+			x++; // x = 10
+			test = 0;
+			ship5.size = 1;
+			console.log("shipcell 51 " );
+		}
+		if(ship5.size == 1 && test == 1 && cellcolorblue (a, b) == false && cellcolorblue3(a, b, ship5.position) == true){
+			shipblue (a, b);
+			ship5.position = [a,b];
+			x++; // x = 11
+			test = 0;
+			ship5.size = 2;
+			console.log("shipcell 52 " );
+		}
+		if(ship5.size == 2 && test == 1 && cellcolorblue33(a, b, ship5.position) == true){
+			shipblue (a, b);
+			x++; // x = 12
+			test = 0;
+			console.log("shipcell 53 " );
+		}
+		test = 0;
+		console.log("ship 51")
+	}
 }
 
-// function removecursor (celllist) {
-// 	for (let i = 12 ; i < celllist.length; i++) {celllist[i].style.cursor = "none";}
-// }
-
-class ship{
+class ship{  // create ship by fubction still in constuction
 	constructor(name, lenght){
 		this.name = name;
 		this.lenght = lenght;
