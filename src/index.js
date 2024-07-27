@@ -15,5 +15,5 @@ function component() {
   document.body.appendChild(component());
   document.body.appendChild(boardship());
   document.body.appendChild(boardattack());
-  document.body.appendChild(clickattack());
   cellclick();
+  clickattack()
