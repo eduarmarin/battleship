@@ -35,7 +35,7 @@ function boardship (){ // ----------------------------------create the board wit
  return boardshipcont;
 }
 
-function boardattack (){ // -------------------------------------create board attack with numbers and letters ----------------------------
+function boardattack (){ // --------------------------------create board attack with numbers and letters ----------------------------
 	var boardattack = document.createElement('table');
 	for (let i = 0; i < 11; i++) {
 		 var tr = document.createElement('tr'); // Create a row
@@ -63,19 +63,19 @@ function boardattack (){ // -------------------------------------create board at
 	return boardattack;
  }
 
-function clickattack (){  // ---------------------------------listen clicks on board----------------------------------
+function clickattack (){  // -------------------------------listen clicks on board----------------------------------
 	var celllist = document.getElementsByClassName('cell2');
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
-			this.style.backgroundColor = 'lightred';
+			this.style.backgroundColor = 'red';
 			console.log("attacck: " + this.id)
-			test = 1; // this var is just a witnes 
-			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
-			var cell1 = +(celllist[i].id)[2];
-			if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
-			if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
-			if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
-			if (cell0 > 0 && cell0 < 11 && cell1 > 0 && cell1 < 11){ shipblue(cell0, cell1)}
+			// test = 1; // this var is just a witnes 
+			// var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
+			// var cell1 = +(celllist[i].id)[2];
+			// if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
+			// if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
+			// if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
+			// if (cell0 > 0 && cell0 < 11 && cell1 > 0 && cell1 < 11){ shipblue(cell0, cell1)}
 		});
 	}
 }
