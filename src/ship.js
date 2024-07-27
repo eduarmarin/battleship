@@ -67,7 +67,7 @@ function clickattack (){  // ---------------------------------listen clicks on b
 	var celllist = document.getElementsByClassName('cell2');
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
-			this.style.backgroundColor = 'lightblue';
+			this.style.backgroundColor = 'lightred';
 			console.log("attacck: " + this.id)
 			test = 1; // this var is just a witnes 
 			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
