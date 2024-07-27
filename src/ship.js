@@ -3,7 +3,7 @@ import './style.css';
 
 var x = 4; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
-var perp = []; // pern var in three cell ship
+var perp = []; // pern var in third three cell ship
 var anum = 0; // var to enumerate the first row
 var ascii = 64; // var to put letters in the first column
 
@@ -30,7 +30,52 @@ function boardship (){ // ----------------------------------create the board wit
 		}
 		boardshipcont.appendChild(tr);
  }
+ anum = 0;
+ ascii = 64;
  return boardshipcont;
+}
+
+function boardattack (){ // -------------------------------------create board attack with numbers and letters ----------------------------
+	var boardattack = document.createElement('table');
+	for (let i = 0; i < 11; i++) {
+		 var tr = document.createElement('tr'); // Create a row
+		 for (let j = 0; j < 11; j++) {
+				 var td = document.createElement('td');// Create a cell
+				 td.classList.add('cell2');
+				 tr.appendChild(td);
+				 if( i == 0 ) { //numbers first row
+						 td.style.border = "none"; 
+						 td.style.cursor = "none";
+						 td.textContent = anum++;
+				 }
+				 if( j == 0 ) { // letters first colum
+						 td.style.border = "none"; 
+						 td.style.cursor = "none";
+						 td.textContent = String.fromCharCode(ascii++);
+				 }
+				 td.id = [i, j]; // it will be a string
+				 if ( i == 0 && j == 0){ td.textContent = ""; } // corner
+		 }
+		 boardattack.appendChild(tr);
+	}
+	anum = 0;
+	ascii = 64;
+	return boardattack;
+ }
+
+function clickattack (){  // ---------------------------------listen clicks on board----------------------------------
+	var celllist = document.getElementsByClassName('cell2');
+	for (let i = 12 ; i < celllist.length; i++) {
+		celllist[i].addEventListener('click', function (e) { 
+			test = 1; // this var is just a witnes 
+			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
+			var cell1 = +(celllist[i].id)[2];
+			if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
+			if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
+			if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
+			if (cell0 > 0 && cell0 < 11 && cell1 > 0 && cell1 < 11){ shipblue(cell0, cell1)}
+		});
+	}
 }
 
 function cellclick (){  // ---------------------------------listen clicks on board----------------------------------
@@ -220,13 +265,14 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 			x++; // x = 12
 			test = 0;
 			console.log("shipcell 53 " );
+			ship5.sizeok5();
 		}
 		test = 0;
 		console.log("ship 51")
 	}
 }
 
-const ship1 = { // -----------------------------------------two cells ships ------------------------------------
+const ship1 = { // -----------------------------------------place two cells ships ------------------------------------
 name: "ship1",
 size: 0,
 position: [],
@@ -271,11 +317,11 @@ const ship5 = {
 	orientation: "",
 	attacks: 0,
 	sunk: false,
-	sizeok5 (){if (ship5.size == 2){console.log("ship5 size ok")}}
+	sizeok5 (){if (ship5.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
 	}
 
 //ship1.sizeok1();
-ship5.sizeok5();
+//ship5.sizeok5();
 
 class ship{  // create ship by fubction still in constuction
 	constructor(name, lenght){
@@ -317,4 +363,4 @@ var gamersships =  [ // create ship by fubction still in constuction
 
 
 
-export { boardship, cellclick };
+export { boardship, cellclick, boardattack, clickattack };
