@@ -7,6 +7,8 @@ var test2 = 0;
 var perp = []; // pern var in third three cell ship
 var anum = 0; // var to enumerate the first row
 var ascii = 64; // var to put letters in the first column
+var cell0 = 0;
+var cell1 = 0;
 
 function boardshippc (){ // ----------------------------------create the board with numbers and letters ----------------------------
  var boardshipcont = document.createElement('table');
@@ -82,20 +84,23 @@ function clickattackpc (){  // -------------------------------listen clicks on b
 }
 
 function cellclickpc (){  // ---------------------------------listen clicks on board----------------------------------
-	console.log("click pc");
 	test = 1; // this var is just a witnes 
-	let cell0 = Math.floor((Math.random() * 10) + 1); // random whole number between 1 and 10 (inclusive)
-	let cell1 = Math.floor((Math.random() * 10) + 1);
-	if (test2 = 1) {
+	if (test2 == 1) {
 		let celltwo = Math.floor((Math.random() * 4) + 1);
 		console.log("celltwo random: " + celltwo);
-		if (celltwo == 1) {cell0 + 1, cell1};
-		if (celltwo == 2) {cell0 - 1, cell1}; 
-		if (celltwo == 3) {cell0, cell1 + 1};
-		if (celltwo == 4) {cell0, cell1 - 1};
+		if (celltwo == 1) {cell0 = cell0 + 1; cell1}
+		if (celltwo == 2) {cell0 = cell0 - 1; cell1} 
+		if (celltwo == 3) {cell0; cell1 = cell1 + 1}
+		if (celltwo == 4) {cell0; cell1 = cell1 - 1}
 		test2 = 0;
+	} else {
+		cell0 = Math.floor((Math.random() * 10) + 1); // random whole number between 1 and 10 (inclusive)
+		cell1 = Math.floor((Math.random() * 10) + 1);
+		console.log("click pc");
 	}
-	if (cell0 > 0 && cell0 < 11 && cell1 > 0 && cell1 < 11){ placeships(cell0, cell1)}
+	if (cell0 > 0 && cell0 < 11 && cell1 > 0 && cell1 < 11){ 
+		placeships(cell0, cell1);
+	} else {cellclickpc()}
 }
 
 function shipcell2 (cell0, cell1, shippos) {   //-----------check cells aroud looking for the same ship comparing cell id---------------------
@@ -213,15 +218,17 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 			test2 = 1
 			ship3.size = 1;
 			console.log("shipcell 31");
+			cellclickpc();
 		}
-		if(ship3.size == 1 && test == 1 && shipcell2(a, b, ship3.position) == true && cellcolorblue(a, b) == false){
+		if(ship3.size == 1 && test == 1 && cellcolorblue(a, b) == false){ //shipcell2(a, b, ship3.position) == true &&
 			shipblue (a, b);
 			x++; // x = 6
 			test = 0;
-			//console.log("shipcell 32");
+			test2 = 0;
+			console.log("shipcell 32");
 		}
 		test = 0;
-		//console.log("ship3");
+		console.log("ship3");
 	}
 	if (5 < x && x < 9 && test == 1) {  //--------------place ship4 ---------------
 		if( ship4.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
