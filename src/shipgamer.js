@@ -181,7 +181,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		}
 		test = 0;
 		console.log("ship1")
-		ship1.sizeok();
+		ship1.sizeok1();
 	}
 	if (1 < x && x < 4 && test == 1) {  //--------------place ship2 --------------
 		if( ship2.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){

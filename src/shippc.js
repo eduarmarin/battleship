@@ -1,7 +1,7 @@
 import { add, create } from 'lodash';
 import './style.css';
 
-var x = 4; // true clicks counter
+var x = 0; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
 var test2 = 0;
 var perp = []; // pern var in third three cell ship
@@ -83,71 +83,62 @@ function clickattackpc (){  // -------------------------------listen clicks on b
 	}
 }
 
-function cellclickpc (){  // ---------------------------------listen clicks on board----------------------------------
+function cellclickpc (){  // ---------------------------------random clicks pc board----------------------------------
 	test = 1; // this var is just a witnes 
-	if (test2 == 1) {
+	if (test2 == 1) { // this if select one of four options to get the second cell ship
 		let celltwo = Math.floor((Math.random() * 4) + 1);
-		console.log("celltwo random: " + celltwo);
-		if (celltwo == 1) {cell0 = cell0 + 1; cell1}
-		if (celltwo == 2) {cell0 = cell0 - 1; cell1} 
-		if (celltwo == 3) {cell0; cell1 = cell1 + 1}
-		if (celltwo == 4) {cell0; cell1 = cell1 - 1}
+		if (celltwo == 1) {
+			cell0 = cell0 + 1;
+			if (cell0 > 10){ cell0 = 9; }
+		}
+		if (celltwo == 2) {
+			cell0 = cell0 - 1;
+			if (cell0 < 1){ cell0 = 2; }
+		} 
+		if (celltwo == 3) {
+			cell1 = cell1 + 1;
+			if (cell1 > 10){ cell1 = 9; }
+		}
+		if (celltwo == 4) {
+			cell1 = cell1 - 1;
+			if (cell1 < 1){ cell1 = 2; }
+		}
 		test2 = 0;
-	} else {
+	} else { //
 		cell0 = Math.floor((Math.random() * 10) + 1); // random whole number between 1 and 10 (inclusive)
 		cell1 = Math.floor((Math.random() * 10) + 1);
-		console.log("click pc");
+		//console.log("click pc");
 	}
-	if (cell0 > 0 && cell0 < 11 && cell1 > 0 && cell1 < 11){ 
-		placeships(cell0, cell1);
-	} else {cellclickpc()}
-}
-
-function shipcell2 (cell0, cell1, shippos) {   //-----------check cells aroud looking for the same ship comparing cell id---------------------
-	let a = JSON.stringify([cell0 + 1, cell1]);
-	let b = JSON.stringify([cell0 - 1, cell1]); 
-	let c = JSON.stringify([cell0, cell1 + 1]);
-	let d = JSON.stringify([cell0, cell1 - 1]);
-	let e = JSON.stringify(shippos);
-	//console.log("a: " + a + " b: " + b + " c: " + c + " d: " + d + " e: " + e)
-	if (a == e) { return true }
-	else if (b == e) { return true }
-	else if (c == e) { return true }
-	else if (d == e) { return true }
-	else { return false }
+	placeships(cell0, cell1);
 }
 
 function cellcolorblue (cell0, cell1) {   //----------------2 cells ships; check cell clicked dont be another ship using blue color as identifier
-	if (document.getElementById([cell0, cell1]).style.backgroundColor == 'lightblue') { return true }
+	if (document.getElementById([cell0, cell1]).style.backgroundColor == 'blue') { return true }
 	else { return false }
 }
 
-function cellcolorblue3 (cell0, cell1, shippos) {  //-------3 cells ships; check cell clicked dont be another ship using blue color as identifier
+function cellcolorblue3 (cell0, cell1, shippos) {  //-------3 cells ships; check secoond cell clicked dont be another ship using blue color as identifier
 	try{var aa = document.getElementById([cell0 + 1, cell1]).style.backgroundColor} // down
-	 catch(err){aa = "lightblue";} //finally {aa = "lightblue"}
+	 catch(err){aa = "blue";} //finally {aa = "lightblue"}
 	let b = document.getElementById([cell0 - 1, cell1]).style.backgroundColor // up
 	try{var cc = document.getElementById([cell0, cell1 + 1]).style.backgroundColor} // right
-	 catch(err){cc = "lightblue";} //finally {cc = "lightblue"}
+	 catch(err){cc = "blue";} //finally {cc = "lightblue"}
 	let d = document.getElementById([cell0, cell1 - 1]).style.backgroundColor // left
 
 	let e = cell0 - shippos[0]; // e = - 1 --> up ;  e =  1 --> down
 	let g = cell1 - shippos[1]; // g = - 1 --> left ;  g =  1 --> right
 
-	// console.log("cell0 " + cell0 + " cell1 " + cell1 + " shippos " + shippos)
-	// console.log("cellcolorblue3 " + "a: " + aa + " b: " + b + " c: " + cc + " d: " + d)
-	// console.log("perpen" + " e: " + e + " g: " + g)
-	
 	if (g == 1 && e == 0) { 
-		if (cc == "lightblue") { return false } else { perp[0] = 1; return true }
+		if (cc == "blue") { return false } else { perp[0] = 1; return true }
 	}
 	if (g == - 1 && e == 0) {
-		if (d == "lightblue") { return false } else { perp[0] = 2; return true }
+		if (d == "blue") { return false } else { perp[0] = 2; return true }
 	}
 	if (e == - 1 && g == 0) { 
-		if (b == "lightblue") { return false } else { perp[0] = 3; return true }
+		if (b == "blue") { return false } else { perp[0] = 3; return true }
 	}
 	if ( e == 1 && g == 0) { 
-		if (aa == "lightblue") { return false } else { perp[0] = 4; return true }
+		if (aa == "blue") { return false } else { perp[0] = 4; return true }
 	}
 }
 
@@ -169,6 +160,7 @@ function cellcolorblue33 (cell0, cell1, shippos){ //--------third cell of three 
 function shipblue (a, b) {  // -----------------------------paint cell with lightblue-------------------------------
 	//console.log("inside shipblue ");
 	document.getElementById([a,b]).style.backgroundColor = 'blue';
+	console.log("cello: " + a + "  " + " cell1: " + b)
 }
 
 function placeships(a, b) {  //-----------------------------place all ships-----------------------------------------
@@ -176,20 +168,24 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		if( ship1.size == 0 && test == 1){
 			shipblue (a, b);
 			ship1.position = [a,b];
-			x++;  // x = 1
-			test = 0; // this var help to get into placeships only when listen click on cellclick
-			console.log("shipcell 11");
-			ship1.size = 1;
-		}
-		if(ship1.size == 1 && test == 1 && shipcell2(a, b, ship1.position) == true  && (cellcolorblue(a, b) == false)) {
-			console.log("shipcell 12");
-			shipblue (a, b);
-			x++;  // x = 2
+			x++; // v = 1
 			test = 0;
+			test2 = 1
+			ship1.size = 1;
+			//console.log("shipcell 11");
+			cellclickpc();
+		}
+		if(ship1.size == 1 && test == 1 && cellcolorblue(a, b) == false){ //shipcell2(a, b, ship3.position) == true &&
+			shipblue (a, b);
+			x++; // x = 2
+			test = 0;
+			test2 = 0;
+			//console.log("shipcell 12");
 		}
 		test = 0;
-		console.log("ship1")
-		ship1.sizeok();
+		console.log("ship1, x: " + x)
+		//ship1.sizeok1();
+		cellclickpc();
 	}
 	if (1 < x && x < 4 && test == 1) {  //--------------place ship2 --------------
 		if( ship2.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
@@ -197,17 +193,21 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 			ship2.position = [a,b];
 			x++;  // x = 3
 			test = 0;
+			test2 = 1;
 			ship2.size = 1;
-			console.log("shipcell 21");
+			//console.log("shipcell 21");
+			//cellclickpc();
 		}
-		if(ship2.size == 1 && test ==1 && shipcell2(a, b, ship2.position) == true && cellcolorblue(a, b) == false){
+		if(ship2.size == 1 && test ==1 && cellcolorblue(a, b) == false){
 			shipblue (a, b);
 			x++;  // x = 4
 			test = 0;
-			console.log("shipcell 22");
+			test2 = 0;
+			//console.log("shipcell 22");
 		}
 		test = 0;
-		console.log("ship2");
+		console.log("ship2, x: " + x);
+		cellclickpc();
 	}
 	if (3 < x && x < 6 && test == 1) {  //--------------place ship3 --------------
 		if( ship3.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
@@ -217,27 +217,30 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 			test = 0;
 			test2 = 1
 			ship3.size = 1;
-			console.log("shipcell 31");
-			cellclickpc();
+			//console.log("shipcell 31");
+		//	cellclickpc();
 		}
 		if(ship3.size == 1 && test == 1 && cellcolorblue(a, b) == false){ //shipcell2(a, b, ship3.position) == true &&
 			shipblue (a, b);
 			x++; // x = 6
 			test = 0;
 			test2 = 0;
-			console.log("shipcell 32");
+			//console.log("shipcell 32");
 		}
 		test = 0;
-		console.log("ship3");
+		console.log("ship3, x: " + x);
+		cellclickpc();
 	}
 	if (5 < x && x < 9 && test == 1) {  //--------------place ship4 ---------------
 		if( ship4.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
-			ship4.position = [a,b]; // ship4.position.push([a,b]);
+			ship4.position = [a,b];
 			x++; // x = 7
 			test = 0;
+			test2 = 1;
 			ship4.size = 1;
 			console.log("shipcell 41 " );
+			//cellclickpc();
 		}
 		if(ship4.size == 1 && test == 1 && cellcolorblue (a, b) == false && cellcolorblue3(a, b, ship4.position) == true){
 			shipblue (a, b);
@@ -254,11 +257,12 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 			console.log("shipcell 43 " );
 		}
 		test = 0;
-		console.log("ship 41")
+		console.log("ship 41, x: " + x)
+		cellclickpc();
 	}
 	if (8 < x && x < 12 && test == 1) { //--------------place ship5 ---------------
 		if( ship5.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
-			shipblue (a, b);
+			//shipblue (a, b);
 			ship5.position = [a,b]; // ship4.position.push([a,b]);
 			x++; // x = 10
 			test = 0;
@@ -332,9 +336,6 @@ const ship5 = {
 	sunk: false,
 	sizeok5 (){if (ship5.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
 	}
-
-//ship1.sizeok1();
-//ship5.sizeok5();
 
 class ship{  // create ship by fubction still in constuction
 	constructor(name, lenght){
