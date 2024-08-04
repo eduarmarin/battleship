@@ -243,7 +243,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		if(ship4.size == 1 && test == 4){
 			console.log("iniside II")
 			let randdom1 = Math.floor((Math.random() * 4) + 1);
-			if (a < 9 && a > 2 && b < 9 && b > 2){ //------------------------------------------------------central aquare
+			if (a < 9 && a > 2 && b < 9 && b > 2){ //------------------------------------------------------central square
 				console.log("iniside III")
 				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
 					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
@@ -336,8 +336,56 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 					shipblue (a, b - 1);
 					shipblue (a, b - 2);
 				}
+			} else 
+			if (a < 3 && b < 3) {         //---------------------------------------------------------------corner left and up 
+				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
+					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a + 1, b);
+					shipblue (a + 2, b);
+				} else 
+				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
+					console.log("right, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a, b + 1);
+					shipblue (a, b + 2);
+				}
+			} else
+			if (a < 3 && b > 8){          //---------------------------------------------------------------corner right and up 
+				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
+					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a + 1, b);
+					shipblue (a + 2, b);
+				} else 
+				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
+					console.log("left, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a, b - 1);
+					shipblue (a, b - 2);
+				}
+			} else
+			if (a > 8 && b < 3){          //---------------------------------------------------------------corner left and down 
+				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
+					console.log("up, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a - 1, b);
+					shipblue (a - 2, b);
+				} else 
+				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
+					console.log("right, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a, b + 1);
+					shipblue (a, b + 2);
+				}
+			} else
+			if(a > 8 && b > 8){           //---------------------------------------------------------------corner right and down 
+				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
+					console.log("up, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a - 1, b);
+					shipblue (a - 2, b);
+				} else 
+				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
+					console.log("left, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a, b - 1);
+					shipblue (a, b - 2);
+				}
 			}
-		}	
+			}	
 		test = 0;
 		console.log("ship 41, x must be 7: " + x)
 		//cellclickpc();
