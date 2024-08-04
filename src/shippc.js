@@ -243,7 +243,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		if(ship4.size == 1 && test == 4){
 			console.log("iniside II")
 			let randdom1 = Math.floor((Math.random() * 4) + 1);
-			if (a < 9 && a > 2 && b < 9 && b > 3){
+			if (a < 9 && a > 2 && b < 9 && b > 2){ //------------------------------------------------------central aquare
 				console.log("iniside III")
 				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
 					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
@@ -265,10 +265,78 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 					shipblue (a, b - 1);
 					shipblue (a, b - 2);
 				}
-				else {shipblue (9, 9);}
-			} else {
-				shipblue (7, 7);
-			}	
+				else {
+					shipblue (9, 9);
+				}
+			} else 
+			if (b > 2 && b < 9 && a < 3){ //---------------------------------------------------------------rectangle up
+				if(cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
+					console.log("right, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a, b + 1);
+					shipblue (a, b + 2);
+				} else 
+				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
+					console.log("left, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a, b - 1);
+					shipblue (a, b - 2);
+				} else 
+				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
+					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a + 1, b);
+					shipblue (a + 2, b);
+				} 
+			} else
+			if (b > 2 && b < 9 && a > 8){ //---------------------------------------------------------------rectangle down
+				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
+					console.log("up, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a - 1, b);
+					shipblue (a - 2, b);
+				} else 
+				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
+					console.log("right, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a, b + 1);
+					shipblue (a, b + 2);
+				} else 
+				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
+					console.log("left, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a, b - 1);
+					shipblue (a, b - 2);
+				}
+			} else
+			if (a > 2 && a < 9 && b < 3){ //---------------------------------------------------------------rectangle left
+				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
+					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a + 1, b);
+					shipblue (a + 2, b);
+				} else 
+				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
+					console.log("up, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a - 1, b);
+					shipblue (a - 2, b);
+				} else 
+				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
+					console.log("right, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a, b + 1);
+					shipblue (a, b + 2);
+				}
+			} else 
+			if (a > 2 && a < 9 && b > 8){ //---------------------------------------------------------------rectangle right
+				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
+					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a + 1, b);
+					shipblue (a + 2, b);
+				} else 
+				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
+					console.log("up, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a - 1, b);
+					shipblue (a - 2, b);
+				} else 
+				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
+					console.log("left, randdom1: " + randdom1 + " a: " + a + " b " + b)
+					shipblue (a, b - 1);
+					shipblue (a, b - 2);
+				}
+			}
 		}	
 		test = 0;
 		console.log("ship 41, x must be 7: " + x)
