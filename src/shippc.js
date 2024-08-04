@@ -37,7 +37,6 @@ function boardshippc (){ // ----------------------------------create the board w
  ascii = 64;
  return boardshipcont;
 }
-
 function boardattackpc (){ // --------------------------------create board attack with numbers and letters ----------------------------
 	var boardattack = document.createElement('table');
 	for (let i = 0; i < 11; i++) {
@@ -65,7 +64,6 @@ function boardattackpc (){ // --------------------------------create board attac
 	ascii = 64;
 	return boardattack;
  }
-
 function clickattackpc (){  // -------------------------------listen clicks on board attack----------------------------------
 	var celllist = document.getElementsByClassName('cell2');
 	for (let i = 12 ; i < celllist.length; i++) {
@@ -82,7 +80,6 @@ function clickattackpc (){  // -------------------------------listen clicks on b
 		});
 	}
 }
-
 function cellclickpc (){  // ---------------------------------random clicks pc board----------------------------------
 	test = 1; // this var is just a witnes 
 	if (test2 == 1) { //select one of four options to get the second cell ship 2 cell ship
@@ -111,59 +108,16 @@ function cellclickpc (){  // ---------------------------------random clicks pc b
 	}
 	placeships(cell0, cell1);
 }
-
-function cellcolorblue (cell0, cell1) {   //----------------2 & 3 cells ships; check cell clicked dont be another ship using blue color as identifier
+function cellcolorblue (cell0, cell1) {   //------------------2 & 3 cells ships; check cell clicked dont be another ship using blue color as identifier
 	if (document.getElementById([cell0, cell1]).style.backgroundColor == 'blue') { return true }
 	else { return false }
 }
-
-function cellcolorblue3 (cell0, cell1, shippos) {  //-------3 cells ships; check third cell dont be another ship using blue color as identifier
-	try{var aa = document.getElementById([cell0 + 1, cell1]).style.backgroundColor} // down
-	 catch(err){aa = "blue";} //finally {aa = "lightblue"}
-	let b = document.getElementById([cell0 - 1, cell1]).style.backgroundColor // up
-	try{var cc = document.getElementById([cell0, cell1 + 1]).style.backgroundColor} // right
-	 catch(err){cc = "blue";} //finally {cc = "lightblue"}
-	let d = document.getElementById([cell0, cell1 - 1]).style.backgroundColor // left
-
-	let e = cell0 - shippos[0]; // e = - 1 --> up ;  e =  1 --> down
-	let g = cell1 - shippos[1]; // g = - 1 --> left ;  g =  1 --> right
-
-	if (g == 1 && e == 0) { 
-		if (cc == "blue") { return false } else { perp = 1; return true }
-	}
-	if (g == - 1 && e == 0) {
-		if (d == "blue") { return false } else { perp = 2; return true }
-	}
-	if (e == - 1 && g == 0) { 
-		if (b == "blue") { return false } else { perp = 3; return true }
-	}
-	if ( e == 1 && g == 0) { 
-		if (aa == "blue") { return false } else { perp = 4; return true }
-	}
-}
-
-// function cellcolorblue33 (cell0, cell1, shippos){ //--------third cell of three cells ships
-// 	if (perp[0] == 1) { // cell0, cell1 + 1
-// 		if (cell0 == shippos[0] && cell1 == shippos[1] + 1){return true} else{return false}
-// 	}
-// 	if (perp[0] == 2) { // cell0, cell1 - 1
-// 		if (cell0 == shippos[0] && cell1 == shippos[1] - 1){return true} else{return false}
-// 	}
-// 	if (perp[0] == 3) { // cell0 - 1, cell1
-// 		if (cell0 == shippos[0] - 1 && cell1 == shippos[1]){return true} else{return false}
-// 	}
-// 	if (perp[0] == 4) { // cell0 + 1, cell1
-// 		if (cell0 == shippos[0] + 1 && cell1 == shippos[1]){return true} else{return false}
-// 	}
-// }
-
-function shipblue (cell0, cell1) {  // -----------------------------paint cell with lightblue-------------------------------
+function shipblue (cell0, cell1) {  // -----------------------paint cell with lightblue-------------------------------
 	//console.log("inside shipblue ");
 	document.getElementById([cell0,cell1]).style.backgroundColor = 'blue';
 	//console.log("cello: " + a + "  " + " cell1: " + b)
 }
-
-function placeships(a, b) {  //-----------------------------place all ships-----------------------------------------
+function placeships(a, b) {  //-------------------------------place all ships-----------------------------------------
 	if (x < 2) {  //------------------------------------place ship1 --------------
 		if( ship1.size == 0 && test == 1){
 			shipblue (a, b);
@@ -392,8 +346,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 	}
 
 }
-
-const ship1 = { // -----------------------------------------place two cells ships ------------------------------------
+const ship1 = { // -------------------------------------------two cells ships ------------------------------------
 name: "ship1",
 size: 0,
 position: [],
@@ -403,7 +356,6 @@ sunk: false,
 sizeok1 (){if (ship1.size == 1){console.log("ship1 size ok")}}
 
 }
-
 const ship2 = {
 	name: "ship2",
 	size: 0,
@@ -412,7 +364,6 @@ const ship2 = {
 	attacks: 0,
 	sunk: false
 	}
-
 const ship3 = {
 	name: "ship3",
 	size: 0,
@@ -421,8 +372,7 @@ const ship3 = {
 	attacks: 0,
 	sunk: false
 	}
-
-const ship4 = { // -----------------------------------------trhee cells ships ----------------------------
+const ship4 = { // -------------------------------------------trhee cells ships ----------------------------
 name: "ship4",
 size: 0,
 position: [],
@@ -430,7 +380,6 @@ orientation: "",
 attacks: 0,
 sunk: false
 }
-
 const ship5 = {
 	name: "ship5",
 	size: 0,
@@ -440,7 +389,6 @@ const ship5 = {
 	sunk: false,
 	sizeok5 (){if (ship5.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
 	}
-
 class ship{  // create ship by fubction still in constuction
 	constructor(name, lenght){
 		this.name = name;
@@ -451,7 +399,6 @@ class ship{  // create ship by fubction still in constuction
 	hit(){this.hits++;}
 	isSunk(){if(hits>=3){console.log("ship's been sunk")} }
 }
-
 var gamersships =  [ // create ship by fubction still in constuction
 	{
 		name: 1,
