@@ -186,7 +186,7 @@ function placeships(a, b) {  //-------------------------------place all ships---
 		cellclickpc();
 	}
 	if (5 < x && x < 9 && test == 1) {  //--------------place ship4 ---------------
-		if( ship4.size == 0 && test == 1 && cellcolorblue(a, b) == false){
+		if( ship4.size == 0 && test == 1 && cellcolorblue(a, b) == false){ // place first cell of the fourth ship
 			shipblue (a, b);
 			ship4.position = [a,b];
 			x++; // x = 7
@@ -194,7 +194,8 @@ function placeships(a, b) {  //-------------------------------place all ships---
 			ship4.size = 1;
 			console.log("first shipcell 41 " + "cell0: " + a + " cell1: " + b );
 		}
-		if(ship4.size == 1 && test == 4){
+		if(ship4.size == 1 && test == 4){ // place second and third cells of the fourth ship
+			test = 0;
 			console.log("iniside II")
 			let randdom1 = Math.floor((Math.random() * 4) + 1);
 			if (a < 9 && a > 2 && b < 9 && b > 2){ //------------------------------------------------------central square
@@ -339,12 +340,24 @@ function placeships(a, b) {  //-------------------------------place all ships---
 					shipblue (a, b - 2);
 				}
 			}
-			}	
+		}	
 		test = 0;
 		console.log("ship 41, x must be 7: " + x)
-		//cellclickpc();
+		cellclickpc();
 	}
-
+	if (x == 7 && test == 1) {  //--------------placing ship5 ---------------
+		if( ship5.size == 0 && test == 1 && cellcolorblue(a, b) == false){ // place first cell of the fourth ship
+			shipblue (a, b);
+			ship4.position = [a,b];
+			x++; // x = 8
+			test = 4;
+			ship4.size = 1;
+			console.log("first shipcell 41 " + "cell0: " + a + " cell1: " + b );
+		}
+		test = 0;
+		console.log("ship 4, x must be 8: " + x)
+		cellclickpc();
+	}
 }
 const ship1 = { // -------------------------------------------two cells ships ------------------------------------
 name: "ship1",
@@ -363,7 +376,7 @@ const ship2 = {
 	orientation: "",
 	attacks: 0,
 	sunk: false
-	}
+}
 const ship3 = {
 	name: "ship3",
 	size: 0,
@@ -371,7 +384,7 @@ const ship3 = {
 	orientation: "",
 	attacks: 0,
 	sunk: false
-	}
+}
 const ship4 = { // -------------------------------------------trhee cells ships ----------------------------
 name: "ship4",
 size: 0,
@@ -388,7 +401,9 @@ const ship5 = {
 	attacks: 0,
 	sunk: false,
 	sizeok5 (){if (ship5.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
-	}
+}
+
+
 class ship{  // create ship by fubction still in constuction
 	constructor(name, lenght){
 		this.name = name;
