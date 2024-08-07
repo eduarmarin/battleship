@@ -7,7 +7,7 @@ var perp = []; // pern var in third three cell ship
 var anum = 0; // var to enumerate the first row
 var ascii = 64; // var to put letters in the first column
 
-function boardship (){ // ----------------------------------create the board with numbers and letters ----------------------------
+function boardship (){ // ----------------------------------create the board ships with numbers and letters ----------------------------
  var boardshipcont = document.createElement('table');
  for (let i = 0; i < 11; i++) {
     var tr = document.createElement('tr'); // Create a row
@@ -61,7 +61,7 @@ function boardattack (){ // --------------------------------create board attack 
 	ascii = 64;
 	return boardattack;
  }
-function clickattack (){  // -------------------------------listen clicks on board----------------------------------
+function clickattack (){  // -------------------------------listen clicks on board to attack----------------------------------
 	var celllist = document.getElementsByClassName('cell2');
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
@@ -77,7 +77,7 @@ function clickattack (){  // -------------------------------listen clicks on boa
 		});
 	}
 }
-function cellclick (){  // ---------------------------------listen clicks on board----------------------------------
+function cellclick (){  // ---------------------------------listen clicks on board to place every ship----------------------------------
 	var celllist = document.getElementsByClassName('cell');
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
