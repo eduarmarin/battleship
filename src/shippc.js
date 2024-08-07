@@ -117,8 +117,8 @@ function shipblue (cell0, cell1) {  // -----------------------paint cell with li
 	document.getElementById([cell0,cell1]).style.backgroundColor = 'blue';
 	//console.log("cello: " + a + "  " + " cell1: " + b)
 }
-function placeships(a, b) {  //-------------------------------place all ships-----------------------------------------
-	if (x < 2) {  //------------------------------------place ship1 --------------
+function placeships(a, b) {  //-------------------------------placing all ships-----------------------------------------
+	if (x < 2) {  //------------------------------------placing ship1 --------------
 		if( ship1.size == 0 && test == 1){
 			shipblue (a, b);
 			ship1.position = [a,b];
@@ -126,6 +126,7 @@ function placeships(a, b) {  //-------------------------------place all ships---
 			test = 0;
 			test2 = 1
 			ship1.size = 1;
+			document.getElementById([a, b]).classList.add("ship1");
 			//console.log("shipcell 11");
 			cellclickpc();
 		}
@@ -134,14 +135,15 @@ function placeships(a, b) {  //-------------------------------place all ships---
 			x++; // x = 2
 			test = 0;
 			test2 = 0;
+			document.getElementById([a, b]).classList.add("ship1");
 			//console.log("shipcell 12");
 		}
 		test = 0;
-		console.log("ship1, x must be 2 " + x)
+		//console.log("ship1, x must be 2 " + x)
 		//ship1.sizeok1();
 		cellclickpc();
 	}
-	if (1 < x && x < 4 && test == 1) {  //--------------place ship2 --------------
+	if (1 < x && x < 4 && test == 1) {  //--------------placing ship2 --------------
 		if( ship2.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
 			ship2.position = [a,b];
@@ -149,6 +151,7 @@ function placeships(a, b) {  //-------------------------------place all ships---
 			test = 0;
 			test2 = 1;
 			ship2.size = 1;
+			document.getElementById([a, b]).classList.add("ship2");
 			//console.log("shipcell 21");
 			cellclickpc();
 		}
@@ -157,13 +160,14 @@ function placeships(a, b) {  //-------------------------------place all ships---
 			x++;  // x = 4
 			test = 0;
 			test2 = 0;
+			document.getElementById([a, b]).classList.add("ship2");
 			//console.log("shipcell 22");
 		}
 		test = 0;
-		console.log("ship2, x must be 4 " + x);
+		//console.log("ship2, x must be 4 " + x);
 		cellclickpc();
 	}
-	if (3 < x && x < 6 && test == 1) {  //--------------place ship3 --------------
+	if (3 < x && x < 6 && test == 1) {  //--------------placing ship3 --------------
 		if( ship3.size == 0 && test == 1 && cellcolorblue(a, b) == false){
 			shipblue (a, b);
 			ship3.position = [a,b];
@@ -171,7 +175,8 @@ function placeships(a, b) {  //-------------------------------place all ships---
 			test = 0;
 			test2 = 1
 			ship3.size = 1;
-			console.log("shipcell 31");
+			document.getElementById([a, b]).classList.add("ship3");
+			//console.log("shipcell 31");
 			cellclickpc();
 		} 
 		if(ship3.size == 1 && test == 1 && cellcolorblue(a, b) == false){ //shipcell2(a, b, ship3.position) == true &&
@@ -179,46 +184,52 @@ function placeships(a, b) {  //-------------------------------place all ships---
 			x++; // x = 6
 			test = 0;
 			test2 = 0;
-			console.log("shipcell 32");
+			document.getElementById([a, b]).classList.add("ship3");
+			//console.log("shipcell 32");
 		}
 		test = 0;
-		console.log("ship3, x must be 6! " + x);
+		//console.log("ship3, x must be 6! " + x);
 		cellclickpc();
 	}
-	if (5 < x && x < 9 && test == 1) {  //--------------place ship4 ---------------
-		if( ship4.size == 0 && test == 1 && cellcolorblue(a, b) == false){ // place first cell of the fourth ship
+	if (x == 6 && test == 1) {  //----------------------placing ship4 ---------------
+		if( ship4.size == 0 && test == 1 && cellcolorblue(a, b) == false){ // placing first cell of the fourth ship
 			shipblue (a, b);
 			ship4.position = [a,b];
 			x++; // x = 7
-			test = 4;
+			test = 3;
 			ship4.size = 1;
-			console.log("first shipcell 41 " + "cell0: " + a + " cell1: " + b );
+			document.getElementById([a, b]).classList.add("ship4");
+			//console.log("first shipcell 41 " + "cell0: " + a + " cell1: " + b );
 		}
-		if(ship4.size == 1 && test == 4){ // place second and third cells of the fourth ship
+		if(ship4.size == 1 && test == 3){ // placing second and third cells of the fourth ship
 			test = 0;
-			console.log("iniside II")
-			let randdom1 = Math.floor((Math.random() * 4) + 1);
+			ship4.size = 3;
+			//console.log("ship5 2 and 3 cells")
 			if (a < 9 && a > 2 && b < 9 && b > 2){ //------------------------------------------------------central square
-				console.log("iniside III")
+				//console.log("iniside III")
 				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
-					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a + 1, b);
 					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship4");
+					document.getElementById([a + 2, b]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
-					console.log("up, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a - 1, b);
 					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship4");
+					document.getElementById([a - 2, b]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
-					console.log("right, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b + 1);
 					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship4");
+					document.getElementById([a, b + 2]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
-					console.log("left, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b - 1);
 					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship4");
+					document.getElementById([a, b - 2]).classList.add("ship4");
 				}
 				else {
 					shipblue (9, 9);
@@ -226,139 +237,336 @@ function placeships(a, b) {  //-------------------------------place all ships---
 			} else 
 			if (b > 2 && b < 9 && a < 3){ //---------------------------------------------------------------rectangle up
 				if(cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
-					console.log("right, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b + 1);
 					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship4");
+					document.getElementById([a, b + 2]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
-					console.log("left, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b - 1);
 					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship4");
+					document.getElementById([a, b - 2]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
-					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a + 1, b);
 					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship4");
+					document.getElementById([a + 2, b]).classList.add("ship4");
 				} 
 			} else
 			if (b > 2 && b < 9 && a > 8){ //---------------------------------------------------------------rectangle down
 				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
-					console.log("up, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a - 1, b);
 					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship4");
+					document.getElementById([a - 2, b]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
-					console.log("right, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b + 1);
 					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship4");
+					document.getElementById([a, b + 2]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
-					console.log("left, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b - 1);
 					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship4");
+					document.getElementById([a, b - 2]).classList.add("ship4");
 				}
 			} else
 			if (a > 2 && a < 9 && b < 3){ //---------------------------------------------------------------rectangle left
 				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
-					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a + 1, b);
 					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship4");
+					document.getElementById([a + 2, b]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
-					console.log("up, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a - 1, b);
 					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship4");
+					document.getElementById([a - 2, b]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
-					console.log("right, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b + 1);
 					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship4");
+					document.getElementById([a, b + 2]).classList.add("ship4");
+
 				}
 			} else 
 			if (a > 2 && a < 9 && b > 8){ //---------------------------------------------------------------rectangle right
 				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
-					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a + 1, b);
 					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship4");
+					document.getElementById([a + 2, b]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
-					console.log("up, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a - 1, b);
 					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship4");
+					document.getElementById([a - 2, b]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
-					console.log("left, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b - 1);
 					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship4");
+					document.getElementById([a, b - 2]).classList.add("ship4");
 				}
 			} else 
 			if (a < 3 && b < 3) {         //---------------------------------------------------------------corner left and up 
 				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
-					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a + 1, b);
 					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship4");
+					document.getElementById([a + 2, b]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
-					console.log("right, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b + 1);
 					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship4");
+					document.getElementById([a, b + 2]).classList.add("ship4");
 				}
 			} else
 			if (a < 3 && b > 8){          //---------------------------------------------------------------corner right and up 
 				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
-					console.log("down, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a + 1, b);
 					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship4");
+					document.getElementById([a + 2, b]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
-					console.log("left, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b - 1);
 					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship4");
+					document.getElementById([a, b - 2]).classList.add("ship4");
 				}
 			} else
 			if (a > 8 && b < 3){          //---------------------------------------------------------------corner left and down 
 				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
-					console.log("up, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a - 1, b);
 					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship4");
+					document.getElementById([a - 2, b]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
-					console.log("right, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b + 1);
 					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship4");
+					document.getElementById([a, b + 2]).classList.add("ship4");
 				}
 			} else
 			if(a > 8 && b > 8){           //---------------------------------------------------------------corner right and down 
 				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
-					console.log("up, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a - 1, b);
 					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship4");
+					document.getElementById([a - 2, b]).classList.add("ship4");
 				} else 
 				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
-					console.log("left, randdom1: " + randdom1 + " a: " + a + " b " + b)
 					shipblue (a, b - 1);
 					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship4");
+					document.getElementById([a, b - 2]).classList.add("ship4");
 				}
 			}
 		}	
 		test = 0;
-		console.log("ship 41, x must be 7: " + x)
+		//console.log("ship 41, x must be 7: " + x)
 		cellclickpc();
 	}
-	if (x == 7 && test == 1) {  //--------------placing ship5 ---------------
+	if (x == 7 && test == 1) {  //----------------------placing ship5 ---------------
 		if( ship5.size == 0 && test == 1 && cellcolorblue(a, b) == false){ // place first cell of the fourth ship
 			shipblue (a, b);
-			ship4.position = [a,b];
+			ship5.position = [a,b];
 			x++; // x = 8
 			test = 4;
-			ship4.size = 1;
-			console.log("first shipcell 41 " + "cell0: " + a + " cell1: " + b );
+			ship5.size = 1;
+			document.getElementById([a, b]).classList.add("ship5");
+			//console.log("first 51 " + "cell0: " + a + " cell1: " + b );
 		}
+		if(ship5.size == 1 && test == 4){ // placing second and third cells of the fourth ship
+			test = 0;
+			ship5.size = 3;
+			//console.log("ship5 2 and 3 cells")
+			if (a < 9 && a > 2 && b < 9 && b > 2){ //------------------------------------------------------central square
+				//console.log("iniside III")
+				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
+					shipblue (a + 1, b);
+					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship5");
+					document.getElementById([a + 2, b]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
+					shipblue (a - 1, b);
+					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship5");
+					document.getElementById([a - 2, b]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
+					shipblue (a, b + 1);
+					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship5");
+					document.getElementById([a, b + 2]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
+					shipblue (a, b - 1);
+					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship5");
+					document.getElementById([a, b - 2]).classList.add("ship5");
+				}
+				else {
+					shipblue (9, 9);
+				}
+			} else 
+			if (b > 2 && b < 9 && a < 3){ //---------------------------------------------------------------rectangle up
+				if(cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
+					shipblue (a, b + 1);
+					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship5");
+					document.getElementById([a, b + 2]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
+					shipblue (a, b - 1);
+					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship5");
+					document.getElementById([a, b - 2]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
+					shipblue (a + 1, b);
+					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship5");
+					document.getElementById([a + 2, b]).classList.add("ship5");
+				} 
+			} else
+			if (b > 2 && b < 9 && a > 8){ //---------------------------------------------------------------rectangle down
+				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
+					shipblue (a - 1, b);
+					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship5");
+					document.getElementById([a - 2, b]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
+					shipblue (a, b + 1);
+					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship5");
+					document.getElementById([a, b + 2]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
+					shipblue (a, b - 1);
+					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship5");
+					document.getElementById([a, b - 2]).classList.add("ship5");
+				}
+			} else
+			if (a > 2 && a < 9 && b < 3){ //---------------------------------------------------------------rectangle left
+				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
+					shipblue (a + 1, b);
+					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship5");
+					document.getElementById([a + 2, b]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
+					shipblue (a - 1, b);
+					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship5");
+					document.getElementById([a - 2, b]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
+					shipblue (a, b + 1);
+					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship5");
+					document.getElementById([a, b + 2]).classList.add("ship5");
+
+				}
+			} else 
+			if (a > 2 && a < 9 && b > 8){ //---------------------------------------------------------------rectangle right
+				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
+					shipblue (a + 1, b);
+					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship5");
+					document.getElementById([a + 2, b]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
+					shipblue (a - 1, b);
+					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship5");
+					document.getElementById([a - 2, b]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
+					shipblue (a, b - 1);
+					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship5");
+					document.getElementById([a, b - 2]).classList.add("ship5");
+				}
+			} else 
+			if (a < 3 && b < 3) {         //---------------------------------------------------------------corner left and up 
+				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
+					shipblue (a + 1, b);
+					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship5");
+					document.getElementById([a + 2, b]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
+					shipblue (a, b + 1);
+					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship5");
+					document.getElementById([a, b + 2]).classList.add("ship5");
+				}
+			} else
+			if (a < 3 && b > 8){          //---------------------------------------------------------------corner right and up 
+				if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
+					shipblue (a + 1, b);
+					shipblue (a + 2, b);
+					document.getElementById([a + 1, b]).classList.add("ship5");
+					document.getElementById([a + 2, b]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
+					shipblue (a, b - 1);
+					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship5");
+					document.getElementById([a, b - 2]).classList.add("ship5");
+				}
+			} else
+			if (a > 8 && b < 3){          //---------------------------------------------------------------corner left and down 
+				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
+					shipblue (a - 1, b);
+					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship5");
+					document.getElementById([a - 2, b]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a, b + 1) == false && cellcolorblue (a, b + 2) == false){ // right
+					shipblue (a, b + 1);
+					shipblue (a, b + 2);
+					document.getElementById([a, b + 1]).classList.add("ship5");
+					document.getElementById([a, b + 2]).classList.add("ship5");
+				}
+			} else
+			if(a > 8 && b > 8){           //---------------------------------------------------------------corner right and down 
+				if (cellcolorblue (a - 1, b) == false && cellcolorblue (a - 2, b) == false){ // up
+					shipblue (a - 1, b);
+					shipblue (a - 2, b);
+					document.getElementById([a - 1, b]).classList.add("ship5");
+					document.getElementById([a - 2, b]).classList.add("ship5");
+				} else 
+				if (cellcolorblue (a, b - 1) == false && cellcolorblue (a, b - 2) == false){ // left
+					shipblue (a, b - 1);
+					shipblue (a, b - 2);
+					document.getElementById([a, b - 1]).classList.add("ship5");
+					document.getElementById([a, b - 2]).classList.add("ship5");
+				}
+			}
+		}	
 		test = 0;
-		console.log("ship 4, x must be 8: " + x)
+		//console.log("ship 5, x must be 8: " + x)
 		cellclickpc();
 	}
+	let shipclass = document.getElementsByClassName("ship5")
+	console.log("ship5 class: " + shipclass.length)
 }
+
 const ship1 = { // -------------------------------------------two cells ships ------------------------------------
 name: "ship1",
 size: 0,

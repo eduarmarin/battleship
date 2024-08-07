@@ -2,7 +2,7 @@
     color: red;
   }
 
-.cell {
+.cell { /*gamer class*/
     height: 30px;
     width: 30px;
     border: 1px solid black ;
@@ -10,7 +10,7 @@
     cursor: pointer;
 }
 
-.cell2 {
+.cell2 { /*pc class*/
   height: 30px;
   width: 30px;
   border: 1px solid blue ;
