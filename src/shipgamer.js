@@ -1,7 +1,7 @@
 import { add, create } from 'lodash';
 import './style.css';
 
-var x = 4; // true clicks counter
+var x = 0; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
 var perp = []; // pern var in third three cell ship
 var anum = 0; // var to enumerate the first row
@@ -16,12 +16,12 @@ function boardship (){ // ----------------------------------create the board shi
 				td.classList.add('cell');
 				td.id = [i, j]; // it will be a string
 				tr.appendChild(td);
-				if( i == 0 ) { //numbers first row
+				if( i == 0 ) { //-------------------------------numbers first row
 						td.style.border = "none"; 
 						td.style.cursor = "none";
 						td.textContent = anum++;
 				}
-				if( j == 0 ) { // letters first colum
+				if( j == 0 ) { //-------------------------------letters first colum
 						td.style.border = "none"; 
 						td.style.cursor = "none";
 						td.textContent = String.fromCharCode(ascii++);
@@ -65,7 +65,7 @@ function clickattack (){  // -------------------------------listen clicks on boa
 	var celllist = document.getElementsByClassName('cell2');
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
-			this.style.backgroundColor = 'red';
+			this.style.backgroundColor = 'gray';
 			console.log("attacck: " + this.id)
 			// test = 1; // this var is just a witnes 
 			// var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number

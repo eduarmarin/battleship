@@ -55,7 +55,7 @@ function boardattackpc (){ // --------------------------------create board attac
 						 td.style.cursor = "none";
 						 td.textContent = String.fromCharCode(ascii++);
 				 }
-				 td.id = [i, j, 1]; // it will be a string
+				 td.id = [i, j, 2]; // it will be a string
 				 if ( i == 0 && j == 0){ td.textContent = ""; } // corner
 		 }
 		 boardattack.appendChild(tr);
@@ -68,10 +68,9 @@ function clickattackpc (){  // -------------------------------listen clicks on b
 	cell0 = Math.floor((Math.random() * 10) + 1); // random whole number between 1 and 10 (inclusive)
 	cell1 = Math.floor((Math.random() * 10) + 1);
 	if (document.getElementById([cell0,cell1]).style.backgroundColor =='') {
-		document.getElementById([cell0,cell1]).style.backgroundColor = 'gray';
-		console.log("cell0: " + cell0 + " cell1; " + cell1)
-		return true
-	} else { return false}
+		document.getElementById([cell0,cell1,2]).style.backgroundColor = 'red';
+		console.log("click random cell0: " + cell0 + " cell1; " + cell1)
+	} else { cellclickpc()}
 }
 function cellclickpc (){  // ---------------------------------random clicks pc to place ships on board----------------------------------
 	test = 1; // this var is just a witnes 
@@ -555,8 +554,8 @@ function placeships(a, b) {  //-------------------------------placing all ships-
 		//console.log("ship 5, x must be 8: " + x)
 		cellclickpc();
 	}
-	let shipclass = document.getElementsByClassName("ship5")
-	console.log("ship5 class: " + shipclass.length)
+	let shipclass = document.getElementsByClassName("cell2")
+	console.log("class cell2: " + shipclass.length)
 }
 
 const ship1 = { // -------------------------------------------two cells ships ------------------------------------
@@ -643,4 +642,4 @@ var gamersships =  [ // create ship by fubction still in constuction
 
 
 
-export { boardshippc, cellclickpc, boardattackpc, clickattackpc };
+export { boardshippc, cellclickpc, boardattackpc, clickattackpc};
