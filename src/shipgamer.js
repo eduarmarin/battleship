@@ -34,7 +34,6 @@ function boardship (){ // ----------------------------------create the board wit
  ascii = 64;
  return boardshipcont;
 }
-
 function boardattack (){ // --------------------------------create board attack with numbers and letters ----------------------------
 	var boardattack = document.createElement('table');
 	for (let i = 0; i < 11; i++) {
@@ -62,7 +61,6 @@ function boardattack (){ // --------------------------------create board attack 
 	ascii = 64;
 	return boardattack;
  }
-
 function clickattack (){  // -------------------------------listen clicks on board----------------------------------
 	var celllist = document.getElementsByClassName('cell2');
 	for (let i = 12 ; i < celllist.length; i++) {
@@ -79,7 +77,6 @@ function clickattack (){  // -------------------------------listen clicks on boa
 		});
 	}
 }
-
 function cellclick (){  // ---------------------------------listen clicks on board----------------------------------
 	var celllist = document.getElementsByClassName('cell');
 	for (let i = 12 ; i < celllist.length; i++) {
@@ -94,7 +91,6 @@ function cellclick (){  // ---------------------------------listen clicks on boa
 		});
 	}
 }
-
 function shipcell2 (cell0, cell1, shippos) {   //-----------check cells aroud looking for the same ship comparing cell id---------------------
 	let a = JSON.stringify([cell0 + 1, cell1]);
 	let b = JSON.stringify([cell0 - 1, cell1]); 
@@ -108,12 +104,10 @@ function shipcell2 (cell0, cell1, shippos) {   //-----------check cells aroud lo
 	else if (d == e) { return true }
 	else { return false }
 }
-
 function cellcolorblue (cell0, cell1) {   //----------------2 cells ships; check cell clicked dont be another ship using blue color as identifier
 	if (document.getElementById([cell0, cell1]).style.backgroundColor == 'lightblue') { return true }
 	else { return false }
 }
-
 function cellcolorblue3 (cell0, cell1, shippos) {  //-------3 cells ships; check cell clicked dont be another ship using blue color as identifier
 	try{var aa = document.getElementById([cell0 + 1, cell1]).style.backgroundColor} // down
 	 catch(err){aa = "lightblue";} //finally {aa = "lightblue"}
@@ -142,7 +136,6 @@ function cellcolorblue3 (cell0, cell1, shippos) {  //-------3 cells ships; check
 		if (aa == "lightblue") { return false } else { perp[0] = 4; return true }
 	}
 }
-
 function cellcolorblue33 (cell0, cell1, shippos){ //--------third cell of three cells ships
 	if (perp[0] == 1) { // cell0, cell1 + 1
 		if (cell0 == shippos[0] && cell1 == shippos[1] + 1){return true} else{return false}
@@ -157,35 +150,36 @@ function cellcolorblue33 (cell0, cell1, shippos){ //--------third cell of three 
 		if (cell0 == shippos[0] + 1 && cell1 == shippos[1]){return true} else{return false}
 	}
 }
-
 function shipblue (a, b) {  // -----------------------------paint cell with lightblue-------------------------------
 	//console.log("inside shipblue ");
 	document.getElementById([a,b]).style.backgroundColor = 'lightblue';
 }
-
 function placeships(a, b) {  //-----------------------------place all ships-----------------------------------------
-	if (x < 2) {  //------------------------------------place ship1 --------------
+	if (x < 2) {  //------------------------------------placing ship1 --------------
 		if( ship1.size == 0 && test == 1){
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship1");
 			ship1.position = [a,b];
 			x++;  // x = 1
 			test = 0; // this var help to get into placeships only when listen click on cellclick
-			console.log("shipcell 11");
+			//console.log("shipcell 11");
 			ship1.size = 1;
 		}
 		if(ship1.size == 1 && test == 1 && shipcell2(a, b, ship1.position) == true  && (cellcolorblue(a, b) == false)) {
-			console.log("shipcell 12");
+			//console.log("shipcell 12");
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship1");
 			x++;  // x = 2
 			test = 0;
 		}
 		test = 0;
-		console.log("ship1")
+		//console.log("ship1")
 		ship1.sizeok1();
 	}
-	if (1 < x && x < 4 && test == 1) {  //--------------place ship2 --------------
+	if (1 < x && x < 4 && test == 1) {  //--------------placing ship2 --------------
 		if( ship2.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship2");
 			ship2.position = [a,b];
 			x++;  // x = 3
 			test = 0;
@@ -194,6 +188,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		}
 		if(ship2.size == 1 && test ==1 && shipcell2(a, b, ship2.position) == true && cellcolorblue(a, b) == false){
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship1");
 			x++;  // x = 4
 			test = 0;
 			console.log("shipcell 22");
@@ -201,9 +196,10 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		test = 0;
 		console.log("ship2");
 	}
-	if (3 < x && x < 6 && test == 1) {  //--------------place ship3 --------------
+	if (3 < x && x < 6 && test == 1) {  //--------------placing ship3 --------------
 		if( ship3.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship3");
 			ship3.position = [a,b];
 			x++; // v = 5
 			test = 0;
@@ -212,6 +208,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		}
 		if(ship3.size == 1 && test == 1 && shipcell2(a, b, ship3.position) == true && cellcolorblue(a, b) == false){
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship3");
 			x++; // x = 6
 			test = 0;
 			//console.log("shipcell 32");
@@ -219,9 +216,10 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		test = 0;
 		//console.log("ship3");
 	}
-	if (5 < x && x < 9 && test == 1) {  //--------------place ship4 ---------------
+	if (5 < x && x < 9 && test == 1) {  //--------------placing ship4 ---------------
 		if( ship4.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship4");
 			ship4.position = [a,b]; // ship4.position.push([a,b]);
 			x++; // x = 7
 			test = 0;
@@ -230,6 +228,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		}
 		if(ship4.size == 1 && test == 1 && cellcolorblue (a, b) == false && cellcolorblue3(a, b, ship4.position) == true){
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship4");
 			ship4.position = [a,b];
 			x++; // x = 8
 			test = 0;
@@ -238,6 +237,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		}
 		if(ship4.size == 2 && test == 1 && cellcolorblue33(a, b, ship4.position) == true){
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship4");
 			x++; // x = 9
 			test = 0;
 			console.log("shipcell 43 " );
@@ -245,9 +245,10 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		test = 0;
 		console.log("ship 41")
 	}
-	if (8 < x && x < 12 && test == 1) { //--------------place ship5 ---------------
+	if (8 < x && x < 12 && test == 1) { //--------------placing ship5 ---------------
 		if( ship5.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship5");
 			ship5.position = [a,b]; // ship4.position.push([a,b]);
 			x++; // x = 10
 			test = 0;
@@ -256,6 +257,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		}
 		if(ship5.size == 1 && test == 1 && cellcolorblue (a, b) == false && cellcolorblue3(a, b, ship5.position) == true){
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship5");
 			ship5.position = [a,b];
 			x++; // x = 11
 			test = 0;
@@ -264,6 +266,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		}
 		if(ship5.size == 2 && test == 1 && cellcolorblue33(a, b, ship5.position) == true){
 			shipblue (a, b);
+			document.getElementById([a, b]).classList.add("ship5");
 			x++; // x = 12
 			test = 0;
 			console.log("shipcell 53 " );
@@ -284,7 +287,6 @@ sunk: false,
 sizeok1 (){if (ship1.size == 1){console.log("ship1 size ok")}}
 
 }
-
 const ship2 = {
 	name: "ship2",
 	size: 0,
@@ -292,8 +294,7 @@ const ship2 = {
 	orientation: "",
 	attacks: 0,
 	sunk: false
-	}
-
+}
 const ship3 = {
 	name: "ship3",
 	size: 0,
@@ -301,8 +302,7 @@ const ship3 = {
 	orientation: "",
 	attacks: 0,
 	sunk: false
-	}
-
+}
 const ship4 = { // -----------------------------------------trhee cells ships ----------------------------
 name: "ship4",
 size: 0,
@@ -311,7 +311,6 @@ orientation: "",
 attacks: 0,
 sunk: false
 }
-
 const ship5 = {
 	name: "ship5",
 	size: 0,
