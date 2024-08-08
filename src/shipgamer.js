@@ -66,7 +66,6 @@ function clickattack (){  // -------------------------------listen clicks on boa
 	var celllist = document.getElementsByClassName('cell2');
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
-			this.style.backgroundColor = 'gray';
 			console.log("attacck id: " + this.id);
 			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
 			var cell1 = +(celllist[i].id)[2];
@@ -74,7 +73,9 @@ function clickattack (){  // -------------------------------listen clicks on boa
 			if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
 			if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
 			console.log("click on boardattack cell0: " + cell0 + " cell1: " + cell1)
-			shipblackpc(cell0, cell1);
+			if (this.style.backgroundColor == ''){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell doesnt have color
+			else { console.log("no attack")}
+			this.style.backgroundColor = 'gray';
 		});
 	}
 }
