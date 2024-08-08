@@ -1,5 +1,6 @@
 import { add, create } from 'lodash';
 import './style.css';
+import { boardshippc, cellclickpc, boardattackpc, clickattackpc} from './shippc.js'; 
 
 var x = 0; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
@@ -52,7 +53,7 @@ function boardattack (){ // --------------------------------create board attack 
 						 td.style.cursor = "none";
 						 td.textContent = String.fromCharCode(ascii++);
 				 }
-				 td.id = [i, j, 1]; // it will be a string
+				 td.id = [i, j]; //-----------------------------------------it will be a string
 				 if ( i == 0 && j == 0){ td.textContent = ""; } // corner
 		 }
 		 boardattack.appendChild(tr);
@@ -66,7 +67,7 @@ function clickattack (){  // -------------------------------listen clicks on boa
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
 			this.style.backgroundColor = 'gray';
-			console.log("attacck: " + this.id)
+			console.log("attacck id: " + this.id)
 			// test = 1; // this var is just a witnes 
 			// var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
 			// var cell1 = +(celllist[i].id)[2];

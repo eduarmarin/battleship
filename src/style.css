@@ -14,7 +14,13 @@
   height: 30px;
   width: 30px;
   border: 1px solid blue ;
-  /*border-style: solid;*/
+  cursor: pointer;
+}
+
+.cell3 { /*pc class attack board*/
+  height: 30px;
+  width: 30px;
+  border: 1px solid red;
   cursor: pointer;
 }
 
