@@ -1,5 +1,6 @@
 import { add, create } from 'lodash';
 import './style.css';
+import { shipblackgm } from './shipgamer.js'; 
 
 var x = 0; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
@@ -17,7 +18,7 @@ function boardshippc (){ // ----------------------------------create the boardah
     for (let j = 0; j < 11; j++) {
         var td = document.createElement('td');// Create a cell
 				td.classList.add('cell');
-				td.id = [i, j, 4]; // it will be a string
+				td.id = [i, j, 4]; // --------------------------------------------id will be a string
 				tr.appendChild(td);
 				if( i == 0 ) { //numbers first row
 						td.style.border = "none"; 
@@ -64,15 +65,16 @@ function boardattackpc (){ // --------------------------------create board attac
 	ascii = 64;
 	return boardattack;
  }
-function clickattackpc (){  // -------------------------------random clicks on board attack----------------------------------
+function clickattackpc (){  // -------------------------------random function to simulate clicks on board attack----------------------------------
 	cell0 = Math.floor((Math.random() * 10) + 1); // random whole number between 1 and 10 (inclusive)
 	cell1 = Math.floor((Math.random() * 10) + 1);
 	if (document.getElementById([cell0,cell1,2]).style.backgroundColor =='') {
 		document.getElementById([cell0,cell1,2]).style.backgroundColor = 'red';
 		console.log("click random cell0: " + cell0 + " cell1; " + cell1)
+		shipblackgm(cell0, cell1); 
 	} else { clickattackpc()}
 }
-function cellclickpc (){  // ---------------------------------random clicks pc to place ships on board----------------------------------
+function cellclickpc (){  // ---------------------------------random function to simulate clicks to place pc ships on board----------------------------------
 	test = 1; // this var is just a witnes 
 	if (test2 == 1) { //select one of four options to get the second cell ship 2 cell ship
 		let celltwo = Math.floor((Math.random() * 4) + 1);
@@ -108,7 +110,22 @@ function shipblue (cell0, cell1) {  // -----------------------paint cell with li
 	document.getElementById([cell0,cell1,4]).style.backgroundColor = 'blue';
 	//console.log("cello: " + a + "  " + " cell1: " + b)
 }
-function lasttwocells (a, b, c) {
+function shipblackpc (cell0, cell1) {  // ---------------------paint cell black when gets a attack-------------------------------
+	document.getElementById([cell0,cell1,4]).style.backgroundColor = 'black';
+	var classn = document.getElementById([cell0,cell1,4]).classList;
+	if (classn.length == 2) {
+		let a = classn[1];
+		console.log("shipblackpc classn: " + a);
+		if (a == "ship1p") { ship1p.attacks ++}
+		if (a == "ship2p") { ship2p.attacks ++}
+		if (a == "ship3p") { ship3p.attacks ++}
+		if (a == "ship4p") { ship4p.attacks ++}
+		if (a == "ship5p") { ship5p.attacks ++}
+		console.log("ship1p: " + ship1p.attacks + " ship2p: " + ship2p.attacks + " ship3p: " + ship3p.attacks + " ship4p: " + ship4p.attacks + " ship5p: " + ship5p.attacks)
+	} 
+	else { classn = classn[0] }	
+}
+function lasttwocells (a, b, c) { //--------------------------function to place last two cells of fourth nd fifthy ships
 	if (a < 9 && a > 2 && b < 9 && b > 2){ //------------------------------------------------------central square
 		//console.log("iniside III")
 		if (cellcolorblue (a + 1, b) == false && cellcolorblue (a + 2, b) == false){ //down 
@@ -279,18 +296,18 @@ function lasttwocells (a, b, c) {
 }
 function placeships(a, b) {  //-------------------------------placing all ships-----------------------------------------
 	if (x < 2) {  //------------------------------------placing ship1 --------------
-		if( ship1.size == 0 && test == 1){
+		if( ship1p.size == 0 && test == 1){
 			shipblue (a, b);
-			ship1.position = [a,b];
+			ship1p.position = [a,b];
 			x++; // v = 1
 			test = 0;
 			test2 = 1
-			ship1.size = 1;
+			ship1p.size = 1;
 			document.getElementById([a, b, 4]).classList.add("ship1p");
 			//console.log("shipcell 11");
 			cellclickpc();
 		}
-		if(ship1.size == 1 && test == 1 && cellcolorblue(a, b) == false){ //shipcell2(a, b, ship3.position) == true &&
+		if(ship1p.size == 1 && test == 1 && cellcolorblue(a, b) == false){ //shipcell2(a, b, ship3.position) == true &&
 			shipblue (a, b);
 			x++; // x = 2
 			test = 0;
@@ -304,18 +321,18 @@ function placeships(a, b) {  //-------------------------------placing all ships-
 		cellclickpc();
 	}
 	if (1 < x && x < 4 && test == 1) {  //--------------placing ship2 --------------
-		if( ship2.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
+		if( ship2p.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
 			shipblue (a, b);
-			ship2.position = [a,b];
+			ship2p.position = [a,b];
 			x++;  // x = 3
 			test = 0;
 			test2 = 1;
-			ship2.size = 1;
+			ship2p.size = 1;
 			document.getElementById([a, b, 4]).classList.add("ship2p");
 			//console.log("shipcell 21");
 			cellclickpc();
 		}
-		if(ship2.size == 1 && test ==1 && cellcolorblue(a, b) == false){
+		if(ship2p.size == 1 && test ==1 && cellcolorblue(a, b) == false){
 			shipblue (a, b);
 			x++;  // x = 4
 			test = 0;
@@ -328,18 +345,18 @@ function placeships(a, b) {  //-------------------------------placing all ships-
 		cellclickpc();
 	}
 	if (3 < x && x < 6 && test == 1) {  //--------------placing ship3 --------------
-		if( ship3.size == 0 && test == 1 && cellcolorblue(a, b) == false){
+		if( ship3p.size == 0 && test == 1 && cellcolorblue(a, b) == false){
 			shipblue (a, b);
-			ship3.position = [a,b];
+			ship3p.position = [a,b];
 			x++; // v = 5
 			test = 0;
 			test2 = 1
-			ship3.size = 1;
+			ship3p.size = 1;
 			document.getElementById([a, b, 4]).classList.add("ship3p");
 			//console.log("shipcell 31");
 			cellclickpc();
 		} 
-		if(ship3.size == 1 && test == 1 && cellcolorblue(a, b) == false){ //shipcell2(a, b, ship3.position) == true &&
+		if(ship3p.size == 1 && test == 1 && cellcolorblue(a, b) == false){ //shipcell2(a, b, ship3.position) == true &&
 			shipblue (a, b);
 			x++; // x = 6
 			test = 0;
@@ -351,19 +368,19 @@ function placeships(a, b) {  //-------------------------------placing all ships-
 		//console.log("ship3, x must be 6! " + x);
 		cellclickpc();
 	}
-	if (x == 6 && test == 1) {  //----------------------placing ship4 ---------------
-		if( ship4.size == 0 && test == 1 && cellcolorblue(a, b) == false){ // placing first cell of the fourth ship
+	if (x == 6 && test == 1) {  //----------------------placing ship4p ---------------
+		if( ship4p.size == 0 && test == 1 && cellcolorblue(a, b) == false){ // placing first cell of the fourth ship
 			shipblue (a, b);
-			ship4.position = [a,b];
+			ship4p.position = [a,b];
 			x++; // x = 7
 			test = 3;
-			ship4.size = 1;
+			ship4p.size = 1;
 			document.getElementById([a, b, 4]).classList.add("ship4p");
 			//console.log("first shipcell 41 " + "cell0: " + a + " cell1: " + b );
 		}
-		if(ship4.size == 1 && test == 3){ // placing second and third cells of the fourth ship
+		if(ship4p.size == 1 && test == 3){ // placing second and third cells of the fourth ship
 			test = 0;
-			ship4.size = 3;
+			ship4p.size = 3;
 			//console.log("ship5 2 and 3 cells")
             lasttwocells(a, b, "ship4p");
 		}	
@@ -372,18 +389,18 @@ function placeships(a, b) {  //-------------------------------placing all ships-
 		cellclickpc();
 	}
 	if (x == 7 && test == 1) {  //----------------------placing ship5 ---------------
-		if( ship5.size == 0 && test == 1 && cellcolorblue(a, b) == false){ // place first cell of the fourth ship
+		if( ship5p.size == 0 && test == 1 && cellcolorblue(a, b) == false){ // place first cell of the fourth ship
 			shipblue (a, b);
-			ship5.position = [a,b];
+			ship5p.position = [a,b];
 			x++; // x = 8
 			test = 4;
-			ship5.size = 1;
+			ship5p.size = 1;
 			document.getElementById([a, b, 4]).classList.add("ship5p");
 			//console.log("first 51 " + "cell0: " + a + " cell1: " + b );
 		}
-		if(ship5.size == 1 && test == 4){ // placing second and third cells of the fourth ship
+		if(ship5p.size == 1 && test == 4){ // placing second and third cells of the fourth ship
 			test = 0;
-			ship5.size = 3;
+			ship5p.size = 3;
 			//console.log("ship5 2 and 3 cells")
 			lasttwocells(a, b, "ship5p");
 		}	
@@ -391,22 +408,21 @@ function placeships(a, b) {  //-------------------------------placing all ships-
 		//console.log("ship 5, x must be 8: " + x)
 		//for (let i = 0; i < 3; i++){clickattackpc()}
 	}
-	let shipclass = document.getElementsByClassName("ship4p")
-	console.log("class ship4p: " + shipclass.length)
+	// let shipclass = document.getElementsByClassName("ship4p")
+	// console.log("class ship4p: " + shipclass.length)
 }
 
 
-const ship1 = { // -------------------------------------------two cells ships ------------------------------------
-name: "ship1",
-size: 0,
-position: [],
-orientation: "",
-attacks: 0,
-sunk: false,
-sizeok1 (){if (ship1.size == 1){console.log("ship1 size ok")}}
-
+var ship1p = { // -------------------------------------------two cells ships ------------------------------------
+	name: "ship1",
+	size: 0,
+	position: [],
+	orientation: "",
+	attacks: 0,
+	sunk: false,
+	sizeok1 (){if (ship1p.size == 1){console.log("ship1 size ok")}}
 }
-const ship2 = {
+var ship2p = {
 	name: "ship2",
 	size: 0,
 	position: [],
@@ -414,7 +430,7 @@ const ship2 = {
 	attacks: 0,
 	sunk: false
 }
-const ship3 = {
+var ship3p = {
 	name: "ship3",
 	size: 0,
 	position: [],
@@ -422,22 +438,28 @@ const ship3 = {
 	attacks: 0,
 	sunk: false
 }
-const ship4 = { // -------------------------------------------trhee cells ships ----------------------------
-name: "ship4",
-size: 0,
-position: [],
-orientation: "",
-attacks: 0,
-sunk: false
-}
-const ship5 = {
-	name: "ship5",
+var ship4p = { // -------------------------------------------trhee cells ships ----------------------------
+	name: "ship4p",
 	size: 0,
 	position: [],
 	orientation: "",
 	attacks: 0,
 	sunk: false,
-	sizeok5 (){if (ship5.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
+	sizeok4 (){if (ship4p.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
+}
+var ship5p = {
+	name: "ship5",
+	size: 0,
+	position: [],
+	orientation: "",
+	attacks: 0,
+	functionattacks(){
+		if (ship5p.attacks == 2){
+			console.log("ship5 3 attacks!")
+		}
+	},
+	sunk: false,
+	sizeok5 (){if (ship5p.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
 }
 
 
@@ -480,4 +502,4 @@ var gamersships =  [ // create ship by fubction still in constuction
 
 
 
-export { boardshippc, cellclickpc, boardattackpc, clickattackpc};
+export { boardshippc, cellclickpc, boardattackpc, clickattackpc, shipblackpc};

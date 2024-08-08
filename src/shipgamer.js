@@ -1,6 +1,6 @@
 import { add, create } from 'lodash';
 import './style.css';
-import { boardshippc, cellclickpc, boardattackpc, clickattackpc} from './shippc.js'; 
+import { shipblackpc } from './shippc.js'; 
 
 var x = 0; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
@@ -15,7 +15,7 @@ function boardship (){ // ----------------------------------create the board shi
     for (let j = 0; j < 11; j++) {
         var td = document.createElement('td');// Create a cell
 				td.classList.add('cell');
-				td.id = [i, j]; // it will be a string
+				td.id = [i, j]; // --------------------------------------------id will be a string
 				tr.appendChild(td);
 				if( i == 0 ) { //-------------------------------numbers first row
 						td.style.border = "none"; 
@@ -67,14 +67,14 @@ function clickattack (){  // -------------------------------listen clicks on boa
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
 			this.style.backgroundColor = 'gray';
-			console.log("attacck id: " + this.id)
-			// test = 1; // this var is just a witnes 
-			// var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
-			// var cell1 = +(celllist[i].id)[2];
-			// if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
-			// if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
-			// if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
-			// if (cell0 > 0 && cell0 < 11 && cell1 > 0 && cell1 < 11){ shipblue(cell0, cell1)}
+			console.log("attacck id: " + this.id);
+			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
+			var cell1 = +(celllist[i].id)[2];
+			if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
+			if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
+			if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
+			console.log("click on boardattack cell0: " + cell0 + " cell1: " + cell1)
+			shipblackpc(cell0, cell1);
 		});
 	}
 }
@@ -154,6 +154,10 @@ function cellcolorblue33 (cell0, cell1, shippos){ //--------third cell of three 
 function shipblue (a, b) {  // -----------------------------paint cell with lightblue-------------------------------
 	//console.log("inside shipblue ");
 	document.getElementById([a,b]).style.backgroundColor = 'lightblue';
+}
+function shipblackgm (cell0, cell1) {  // ---------------------paint cell with black when gets a attack-------------------------------
+	document.getElementById([cell0,cell1]).style.backgroundColor = 'black';
+	//console.log("cello: " + a + "  " + " cell1: " + b)
 }
 function placeships(a, b) {  //-----------------------------place all ships-----------------------------------------
 	if (x < 2) {  //------------------------------------placing ship1 --------------
@@ -365,4 +369,4 @@ var gamersships =  [ // create ship by fubction still in constuction
 
 
 
-export { boardship, cellclick, boardattack, clickattack };
+export { boardship, cellclick, boardattack, clickattack, shipblackgm};
