@@ -65,7 +65,7 @@ function boardattackpc (){ // --------------------------------create board attac
 	ascii = 64;
 	return boardattack;
  }
-function clickattackpc (){  // -------------------------------random function to simulate clicks on board attack----------------------------------
+function clickattackpc (){  // -------------------------------random function to simulate clicks attacks----------------------------------
 	cell0 = Math.floor((Math.random() * 10) + 1); // random whole number between 1 and 10 (inclusive)
 	cell1 = Math.floor((Math.random() * 10) + 1);
 	if (document.getElementById([cell0,cell1,2]).style.backgroundColor =='') {
@@ -110,18 +110,22 @@ function shipblue (cell0, cell1) {  // -----------------------paint cell with li
 	document.getElementById([cell0,cell1,4]).style.backgroundColor = 'blue';
 	//console.log("cello: " + a + "  " + " cell1: " + b)
 }
-function shipblackpc (cell0, cell1) {  // ---------------------paint cell black when gets a attack-------------------------------
+function shipblackpc (cell0, cell1) {  // --------------------paint cell black them gets an attack-------------------------------
 	document.getElementById([cell0,cell1,4]).style.backgroundColor = 'black';
 	var classn = document.getElementById([cell0,cell1,4]).classList;
 	if (classn.length == 2) {
 		let a = classn[1];
-		console.log("shipblackpc classn: " + a);
+		//console.log("shipblackpc classn: " + a);
 		if (a == "ship1p") { ship1p.attacks ++}
 		if (a == "ship2p") { ship2p.attacks ++}
 		if (a == "ship3p") { ship3p.attacks ++}
 		if (a == "ship4p") { ship4p.attacks ++}
 		if (a == "ship5p") { ship5p.attacks ++}
-		console.log("ship1p: " + ship1p.attacks + " ship2p: " + ship2p.attacks + " ship3p: " + ship3p.attacks + " ship4p: " + ship4p.attacks + " ship5p: " + ship5p.attacks)
+		console.log(" ship1p: " + ship1p.attacks + 
+			        " ship2p: " + ship2p.attacks + 
+					" ship3p: " + ship3p.attacks + 
+					" ship4p: " + ship4p.attacks + 
+					" ship5p: " + ship5p.attacks)
 	} 
 	else { classn = classn[0] }	
 }

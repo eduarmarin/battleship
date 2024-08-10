@@ -66,7 +66,7 @@ function clickattack (){  // -------------------------------listen clicks on boa
 	var celllist = document.getElementsByClassName('cell2');
 	for (let i = 12 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
-			console.log("attacck id: " + this.id);
+			//console.log("attacck id: " + this.id);
 			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
 			var cell1 = +(celllist[i].id)[2];
 			if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
@@ -156,7 +156,7 @@ function shipblue (a, b) {  // -----------------------------paint cell with ligh
 	//console.log("inside shipblue ");
 	document.getElementById([a,b]).style.backgroundColor = 'lightblue';
 }
-function shipblackgm (cell0, cell1) {  // ---------------------paint cell with black when gets a attack-------------------------------
+function shipblackgm (cell0, cell1) {  // ------------------paint pc shipboard cells with black when gets a attack-------------------------------
 	document.getElementById([cell0,cell1]).style.backgroundColor = 'black';
 	//console.log("cello: " + a + "  " + " cell1: " + b)
 }
@@ -284,14 +284,13 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 }
 
 const ship1 = { // -----------------------------------------place two cells ships ------------------------------------
-name: "ship1",
-size: 0,
-position: [],
-orientation: "",
-attacks: 0,
-sunk: false,
-sizeok1 (){if (ship1.size == 1){console.log("ship1 size ok")}}
-
+	name: "ship1",
+	size: 0,
+	position: [],
+	orientation: "",
+	attacks: 0,
+	sunk: false,
+	sizeok1 (){if (ship1.size == 1){console.log("ship1 size ok")}}
 }
 const ship2 = {
 	name: "ship2",
@@ -310,12 +309,12 @@ const ship3 = {
 	sunk: false
 }
 const ship4 = { // -----------------------------------------trhee cells ships ----------------------------
-name: "ship4",
-size: 0,
-position: [],
-orientation: "",
-attacks: 0,
-sunk: false
+	name: "ship4",
+	size: 0,
+	position: [],
+	orientation: "",
+	attacks: 0,
+	sunk: false
 }
 const ship5 = {
 	name: "ship5",
@@ -325,7 +324,7 @@ const ship5 = {
 	attacks: 0,
 	sunk: false,
 	sizeok5 (){if (ship5.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
-	}
+}
 
 //ship1.sizeok1();
 //ship5.sizeok5();
