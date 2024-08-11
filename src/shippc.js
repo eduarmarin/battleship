@@ -5,7 +5,6 @@ import { shipblackgm } from './shipgamer.js';
 var x = 0; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
 var test2 = 0;
-//var perp = 0; // pern var in third three cell ship
 var anum = 0; // var to enumerate the first row numbers
 var ascii = 64; // var to put letters in the first column letters
 var cell0 = 0;
@@ -64,7 +63,7 @@ function boardattackpc (){ // --------------------------------create board attac
 	anum = 0;
 	ascii = 64;
 	return boardattack;
- }
+}
 function clickattackpc (){  // -------------------------------random function to simulate clicks attacks----------------------------------
 	cell0 = Math.floor((Math.random() * 10) + 1); // random whole number between 1 and 10 (inclusive)
 	cell1 = Math.floor((Math.random() * 10) + 1);
@@ -415,7 +414,6 @@ function placeships(a, b) {  //-------------------------------placing all ships-
 	// let shipclass = document.getElementsByClassName("ship4p")
 	// console.log("class ship4p: " + shipclass.length)
 }
-
 
 var ship1p = { // -------------------------------------------two cells ships ------------------------------------
 	name: "ship1",

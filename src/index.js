@@ -20,8 +20,8 @@ document.body.appendChild(boardattack());
 cellclick();
 clickattack()
 
-document.body.appendChild(boardshippc());  //----------pc board
-document.body.appendChild(boardattackpc());
-cellclickpc();
-clickattackpc();
+//document.body.appendChild(boardshippc());  //----------pc board
+//document.body.appendChild(boardattackpc());
+//cellclickpc();// ---------------------------------random function to simulate clicks to place pc ships on board------------
+//clickattackpc();// -------------------------------random function to simulate clicks attacks-------------------------------
 

@@ -1,8 +1,8 @@
 import { add, create } from 'lodash';
 import './style.css';
-import { shipblackpc } from './shippc.js'; 
+import { clickattackpc, cellclickpc, boardshippc, boardattackpc, shipblackpc } from './shippc.js'; 
 
-var x = 0; // true clicks counter
+var x = 9; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
 var perp = []; // pern var in third three cell ship
 var anum = 0; // var to enumerate the first row
@@ -76,6 +76,7 @@ function clickattack (){  // -------------------------------listen clicks on boa
 			if (this.style.backgroundColor == ''){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell doesnt have color
 			else { console.log("no attack")}
 			this.style.backgroundColor = 'gray';
+			clickattackpc(); //-------------------------random function to simulate clicks attacks-------
 		});
 	}
 }
@@ -190,17 +191,17 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 			x++;  // x = 3
 			test = 0;
 			ship2.size = 1;
-			console.log("shipcell 21");
+			//console.log("shipcell 21");
 		}
 		if(ship2.size == 1 && test ==1 && shipcell2(a, b, ship2.position) == true && cellcolorblue(a, b) == false){
 			shipblue (a, b);
 			document.getElementById([a, b]).classList.add("ship1");
 			x++;  // x = 4
 			test = 0;
-			console.log("shipcell 22");
+			//console.log("shipcell 22");
 		}
 		test = 0;
-		console.log("ship2");
+		//console.log("ship2");
 	}
 	if (3 < x && x < 6 && test == 1) {  //--------------placing ship3 --------------
 		if( ship3.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
@@ -230,7 +231,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 			x++; // x = 7
 			test = 0;
 			ship4.size = 1;
-			console.log("shipcell 41 " );
+			//console.log("shipcell 41 " );
 		}
 		if(ship4.size == 1 && test == 1 && cellcolorblue (a, b) == false && cellcolorblue3(a, b, ship4.position) == true){
 			shipblue (a, b);
@@ -239,17 +240,17 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 			x++; // x = 8
 			test = 0;
 			ship4.size = 2;
-			console.log("shipcell 42 " );
+			//console.log("shipcell 42 " );
 		}
 		if(ship4.size == 2 && test == 1 && cellcolorblue33(a, b, ship4.position) == true){
 			shipblue (a, b);
 			document.getElementById([a, b]).classList.add("ship4");
 			x++; // x = 9
 			test = 0;
-			console.log("shipcell 43 " );
+			//console.log("shipcell 43 " );
 		}
 		test = 0;
-		console.log("ship 41")
+		//console.log("ship 41")
 	}
 	if (8 < x && x < 12 && test == 1) { //--------------placing ship5 ---------------
 		if( ship5.size == 0 && test == 1 && (cellcolorblue(a, b) == false)){
@@ -259,7 +260,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 			x++; // x = 10
 			test = 0;
 			ship5.size = 1;
-			console.log("shipcell 51 " );
+			//console.log("shipcell 51 " );
 		}
 		if(ship5.size == 1 && test == 1 && cellcolorblue (a, b) == false && cellcolorblue3(a, b, ship5.position) == true){
 			shipblue (a, b);
@@ -268,18 +269,23 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 			x++; // x = 11
 			test = 0;
 			ship5.size = 2;
-			console.log("shipcell 52 " );
+			//console.log("shipcell 52 " );
 		}
 		if(ship5.size == 2 && test == 1 && cellcolorblue33(a, b, ship5.position) == true){
 			shipblue (a, b);
 			document.getElementById([a, b]).classList.add("ship5");
 			x++; // x = 12
 			test = 0;
-			console.log("shipcell 53 " );
+			//console.log("shipcell 53 " );
 			ship5.sizeok5();
 		}
-		test = 0;
-		console.log("ship 51")
+		test = 0
+		console.log("ship 51 x: " + x)
+		if (x == 12) { 
+			document.body.appendChild(boardshippc());    //----------goes to set up pc board
+			document.body.appendChild(boardattackpc());  //----------goes to set up pc attack board
+			cellclickpc();                               //----------random function to simulate clicks to place pc ships on board
+		}
 	}
 }
 
