@@ -281,7 +281,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		if (x == 12) { 
 			document.body.appendChild(boardshippc());    //----------goes to set up pc board
 			document.body.appendChild(boardattackpc());  //----------goes to set up pc attack board
-			cellclickpc();                                  //----------goes to random clicks function to place pc ships on board
+			cellclickpc();                               //----------goes to random clicks function to place pc ships on board
 		}
 	}
 }

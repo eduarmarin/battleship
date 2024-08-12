@@ -20,7 +20,7 @@ document.body.appendChild(boardattack());
 cellclick();
 clickattack()
 
-var windiv = document.createElement(div);
+var windiv = document.createElement("div");
 windiv.classList.add("centered");
 document.boddy.append(windiv);
 

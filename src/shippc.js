@@ -12,7 +12,7 @@ var cell1 = 0;
 
 function boardshippc (){ // ----------------------------------create the boardahip with numbers and letters ----------------------------
  var boardshipcont = document.createElement('table');
- boardshipcont.style.display = "none";
+ //boardshipcont.style.display = "none";
  for (let i = 0; i < 11; i++) {
     var tr = document.createElement('tr'); // Create a row
     for (let j = 0; j < 11; j++) {
@@ -40,7 +40,7 @@ function boardshippc (){ // ----------------------------------create the boardah
 }
 function boardattackpc (){ // --------------------------------create board attack with numbers and letters ----------------------------
 	var boardattack = document.createElement('table');
-	boardattack.style.display = "none";
+	//boardattack.style.display = "none";
 	for (let i = 0; i < 11; i++) {
 		 var tr = document.createElement('tr'); // Create a row
 		 for (let j = 0; j < 11; j++) {
