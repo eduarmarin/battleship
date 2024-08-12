@@ -12,6 +12,7 @@ var cell1 = 0;
 
 function boardshippc (){ // ----------------------------------create the boardahip with numbers and letters ----------------------------
  var boardshipcont = document.createElement('table');
+ boardshipcont.style.display = "none";
  for (let i = 0; i < 11; i++) {
     var tr = document.createElement('tr'); // Create a row
     for (let j = 0; j < 11; j++) {
@@ -39,6 +40,7 @@ function boardshippc (){ // ----------------------------------create the boardah
 }
 function boardattackpc (){ // --------------------------------create board attack with numbers and letters ----------------------------
 	var boardattack = document.createElement('table');
+	boardattack.style.display = "none";
 	for (let i = 0; i < 11; i++) {
 		 var tr = document.createElement('tr'); // Create a row
 		 for (let j = 0; j < 11; j++) {
@@ -115,12 +117,12 @@ function shipblackpc (cell0, cell1) {  // --------------------paint cell black t
 	if (classn.length == 2) {
 		let a = classn[1];
 		//console.log("shipblackpc classn: " + a);
-		if (a == "ship1p") { ship1p.attacks ++}
+		if (a == "ship1p") { ship1p.attacks ++} //these if count attacks ok
 		if (a == "ship2p") { ship2p.attacks ++}
 		if (a == "ship3p") { ship3p.attacks ++}
 		if (a == "ship4p") { ship4p.attacks ++}
 		if (a == "ship5p") { ship5p.attacks ++}
-		console.log(" ship1p: " + ship1p.attacks + 
+		console.log(" attacks ship1p: " + ship1p.attacks + 
 			        " ship2p: " + ship2p.attacks + 
 					" ship3p: " + ship3p.attacks + 
 					" ship4p: " + ship4p.attacks + 
@@ -457,7 +459,7 @@ var ship5p = {
 	attacks: 0,
 	functionattacks(){
 		if (ship5p.attacks == 2){
-			console.log("ship5 3 attacks!")
+			console.log("ship5 got 3 attacks!")
 		}
 	},
 	sunk: false,

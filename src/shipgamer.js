@@ -76,7 +76,7 @@ function clickattack (){  // -------------------------------listen clicks on boa
 			if (this.style.backgroundColor == ''){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell doesnt have color
 			else { console.log("no attack")}
 			this.style.backgroundColor = 'gray';
-			clickattackpc(); //-------------------------random function to simulate clicks attacks-------
+			clickattackpc(); //-------------------------goes to random function to simulate clicks attacks pc-------
 		});
 	}
 }
@@ -121,10 +121,6 @@ function cellcolorblue3 (cell0, cell1, shippos) {  //-------3 cells ships; check
 
 	let e = cell0 - shippos[0]; // e = - 1 --> up ;  e =  1 --> down
 	let g = cell1 - shippos[1]; // g = - 1 --> left ;  g =  1 --> right
-
-	// console.log("cell0 " + cell0 + " cell1 " + cell1 + " shippos " + shippos)
-	// console.log("cellcolorblue3 " + "a: " + aa + " b: " + b + " c: " + cc + " d: " + d)
-	// console.log("perpen" + " e: " + e + " g: " + g)
 	
 	if (g == 1 && e == 0) { 
 		if (cc == "lightblue") { return false } else { perp[0] = 1; return true }
@@ -284,7 +280,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		if (x == 12) { 
 			document.body.appendChild(boardshippc());    //----------goes to set up pc board
 			document.body.appendChild(boardattackpc());  //----------goes to set up pc attack board
-			cellclickpc();                               //----------random function to simulate clicks to place pc ships on board
+			cellclickpc();                                  //----------goes to random clicks function to place pc ships on board
 		}
 	}
 }
