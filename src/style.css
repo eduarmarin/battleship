@@ -27,3 +27,12 @@
 table{
   border-collapse: collapse;
 }
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}

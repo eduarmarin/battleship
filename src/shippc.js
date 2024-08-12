@@ -73,6 +73,7 @@ function clickattackpc (){  // -------------------------------random function to
 		document.getElementById([cell0,cell1,2]).style.backgroundColor = 'red';
 		console.log("click random cell0: " + cell0 + " cell1; " + cell1)
 		shipblackgm(cell0, cell1); 
+		pclost();
 	} else { clickattackpc()}
 }
 function cellclickpc (){  // ---------------------------------random function to simulate clicks to place pc ships on board----------------------------------
@@ -416,6 +417,15 @@ function placeships(a, b) {  //-------------------------------placing all ships-
 	// let shipclass = document.getElementsByClassName("ship4p")
 	// console.log("class ship4p: " + shipclass.length)
 }
+function pclost(){ //-----------------------------------------display gamer win
+	if (ship1p.sunk == true && ship2p.sunk == true && ship3p.sunk == true && ship4p.sunk == true && ship5p.sunk == true){
+		console.log("gamer win!!!");
+		document.getElementsByClassName("centered").style.display = "block";
+		document.getElementsByClassName("centered").textContent("Gamer Win!!!");
+		// createElement("h1", "You lost!", "p1");
+		// document.body.appendChild(p1);
+	}
+}
 
 var ship1p = { // -------------------------------------------two cells ships ------------------------------------
 	name: "ship1",
@@ -423,6 +433,12 @@ var ship1p = { // -------------------------------------------two cells ships ---
 	position: [],
 	orientation: "",
 	attacks: 0,
+	shipsunk(){
+		if (ship1p.attacks == 1){
+			console.log("ship1 got 2 attacks!")
+			ship1p.sunk = true;
+		}
+	},
 	sunk: false,
 	sizeok1 (){if (ship1p.size == 1){console.log("ship1 size ok")}}
 }
@@ -432,6 +448,12 @@ var ship2p = {
 	position: [],
 	orientation: "",
 	attacks: 0,
+	shipsunk(){
+		if (ship2p.attacks == 1){
+			console.log("ship2 got 2 attacks!")
+			ship2p.sunk = true;
+		}
+	},
 	sunk: false
 }
 var ship3p = {
@@ -440,6 +462,12 @@ var ship3p = {
 	position: [],
 	orientation: "",
 	attacks: 0,
+	shipsunk(){
+		if (ship3p.attacks == 1){
+			console.log("ship3 got 2 attacks!")
+			ship3p.sunk = true;
+		}
+	},
 	sunk: false
 }
 var ship4p = { // -------------------------------------------trhee cells ships ----------------------------
@@ -448,6 +476,12 @@ var ship4p = { // -------------------------------------------trhee cells ships -
 	position: [],
 	orientation: "",
 	attacks: 0,
+	shipsunk(){
+		if (ship4p.attacks == 2){
+			console.log("ship4 got 3 attacks!")
+			ship4p.sunk = true;
+		}
+	},
 	sunk: false,
 	sizeok4 (){if (ship4p.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
 }
@@ -457,9 +491,10 @@ var ship5p = {
 	position: [],
 	orientation: "",
 	attacks: 0,
-	functionattacks(){
+	shipsunk(){
 		if (ship5p.attacks == 2){
 			console.log("ship5 got 3 attacks!")
+			ship5p.sunk = true;
 		}
 	},
 	sunk: false,

@@ -2,7 +2,7 @@ import { add, create } from 'lodash';
 import './style.css';
 import { clickattackpc, cellclickpc, boardshippc, boardattackpc, shipblackpc } from './shippc.js'; 
 
-var x = 9; // true clicks counter
+var x = 0; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
 var perp = []; // pern var in third three cell ship
 var anum = 0; // var to enumerate the first row
@@ -76,7 +76,8 @@ function clickattack (){  // -------------------------------listen clicks on boa
 			if (this.style.backgroundColor == ''){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell doesnt have color
 			else { console.log("no attack")}
 			this.style.backgroundColor = 'gray';
-			clickattackpc(); //-------------------------goes to random function to simulate clicks attacks pc-------
+			winner();
+			clickattackpc(); //-------------------------pc turn - goes to random function to simulate clicks attacks pc-------
 		});
 	}
 }
@@ -284,6 +285,15 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		}
 	}
 }
+function winner(){ //-------------------------------------display gamer lost
+	if (ship1.sunk == true && ship2.sunk == true && ship3.sunk == true && ship4.sunk == true && ship5.sunk == true){
+		console.log("gamer lost!!!")
+		document.getElementsByClassName("centered").style.display = "block";
+		document.getElementsByClassName("centered").textContent("Gamer lost!!!");
+		// createElement("h1", "You lost!", "p1");
+		// document.body.appendChild(p1);
+	}
+}
 
 const ship1 = { // -----------------------------------------place two cells ships ------------------------------------
 	name: "ship1",
@@ -291,6 +301,12 @@ const ship1 = { // -----------------------------------------place two cells ship
 	position: [],
 	orientation: "",
 	attacks: 0,
+	shipsunk(){
+		if (ship1.attacks == 1){
+			console.log("ship1 got 2 attacks!")
+			ship1.sunk = true;
+		}
+	},
 	sunk: false,
 	sizeok1 (){if (ship1.size == 1){console.log("ship1 size ok")}}
 }
@@ -300,6 +316,12 @@ const ship2 = {
 	position: [],
 	orientation: "",
 	attacks: 0,
+	shipsunk(){
+		if (ship2.attacks == 1){
+			console.log("ship2 got 2 attacks!")
+			ship2.sunk = true;
+		}
+	},
 	sunk: false
 }
 const ship3 = {
@@ -308,6 +330,12 @@ const ship3 = {
 	position: [],
 	orientation: "",
 	attacks: 0,
+	shipsunk(){
+		if (ship3.attacks == 1){
+			console.log("ship3 got 2 attacks!")
+			ship3.sunk = true;
+		}
+	},
 	sunk: false
 }
 const ship4 = { // -----------------------------------------trhee cells ships ----------------------------
@@ -316,6 +344,12 @@ const ship4 = { // -----------------------------------------trhee cells ships --
 	position: [],
 	orientation: "",
 	attacks: 0,
+	shipsunk(){
+		if (ship4.attacks == 2){
+			console.log("ship4 got 2 attacks!")
+			ship4.sunk = true;
+		}
+	},
 	sunk: false
 }
 const ship5 = {
@@ -324,6 +358,12 @@ const ship5 = {
 	position: [],
 	orientation: "",
 	attacks: 0,
+	shipsunk(){
+		if (ship5.attacks == 2){
+			console.log("ship5 got 2 attacks!")
+			ship5.sunk = true;
+		}
+	},
 	sunk: false,
 	sizeok5 (){if (ship5.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
 }

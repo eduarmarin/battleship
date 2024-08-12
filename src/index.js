@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _, { divide } from 'lodash';
 import './style.css';
 import { boardship, cellclick, boardattack, clickattack} from './shipgamer.js'; 
 import { boardshippc, cellclickpc, boardattackpc, clickattackpc} from './shippc.js'; 
@@ -19,6 +19,10 @@ document.body.appendChild(boardship());   //-------------gamer board
 document.body.appendChild(boardattack());
 cellclick();
 clickattack()
+
+var windiv = document.createElement(div);
+windiv.classList.add("centered");
+document.boddy.append(windiv);
 
 //document.body.appendChild(boardshippc());  //----------pc board
 //document.body.appendChild(boardattackpc());
