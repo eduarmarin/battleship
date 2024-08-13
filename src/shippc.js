@@ -20,15 +20,15 @@ function boardshippc (){ // ----------------------------------create the boardah
 				td.classList.add('cell');
 				td.id = [i, j, 4]; // --------------------------------------------id will be a string
 				tr.appendChild(td);
-				if( i == 0 ) { //numbers first row
-						td.style.border = "none"; 
-						td.style.cursor = "none";
-						td.textContent = anum++;
+				if( i == 0 ) { //-------------------------------numbers first row
+					td.className = 'cellrow';	
+					td.style.border = "none"; 
+					td.textContent = anum++;
 				}
-				if( j == 0 ) { // letters first colum
-						td.style.border = "none"; 
-						td.style.cursor = "none";
-						td.textContent = String.fromCharCode(ascii++);
+				if( j == 0 ) { //-------------------------------letters first colum
+					td.className = 'cellcol';
+					td.style.border = "none"; 
+					td.textContent = String.fromCharCode(ascii++);
 				}
 				if ( i == 0 && j == 0){ td.textContent = ""; } // corner
 		}
@@ -48,15 +48,15 @@ function boardattackpc (){ // --------------------------------create board attac
 				 td.classList.add('cell3');
 				 tr.appendChild(td);
 				 if( i == 0 ) { //numbers first row
-						 td.style.border = "none"; 
-						 td.style.cursor = "none";
-						 td.textContent = anum++;
-				 }
-				 if( j == 0 ) { // letters first colum
-						 td.style.border = "none"; 
-						 td.style.cursor = "none";
-						 td.textContent = String.fromCharCode(ascii++);
-				 }
+					td.className = 'cell2row';	
+					td.style.border = "none"; 
+					td.textContent = anum++;
+				}
+				if( j == 0 ) { // letters first colum
+					td.className = 'cell2col';
+					td.style.border = "none"; 
+					td.textContent = String.fromCharCode(ascii++);
+				}
 				 td.id = [i, j, 2]; //------------------------------------------it will be a string
 				 if ( i == 0 && j == 0){ td.textContent = ""; } // corner
 		 }
@@ -71,7 +71,7 @@ function clickattackpc (){  // -------------------------------random function to
 	cell1 = Math.floor((Math.random() * 10) + 1);
 	if (document.getElementById([cell0,cell1,2]).style.backgroundColor =='') {
 		document.getElementById([cell0,cell1,2]).style.backgroundColor = 'red';
-		console.log("click random cell0: " + cell0 + " cell1; " + cell1)
+		//console.log("click random cell0: " + cell0 + " cell1; " + cell1)
 		shipblackgm(cell0, cell1); 
 		pclost();
 	} else { clickattackpc()}
@@ -118,11 +118,11 @@ function shipblackpc (cell0, cell1) {  // --------------------paint cell black t
 	if (classn.length == 2) {
 		let a = classn[1];
 		//console.log("shipblackpc classn: " + a);
-		if (a == "ship1p") { ship1p.attacks ++} //these if count attacks ok
-		if (a == "ship2p") { ship2p.attacks ++}
-		if (a == "ship3p") { ship3p.attacks ++}
-		if (a == "ship4p") { ship4p.attacks ++}
-		if (a == "ship5p") { ship5p.attacks ++}
+		if (a == "ship1p") { ship1p.attacks ++; ship1p.shipsunk()} //these if count attacks ok
+		if (a == "ship2p") { ship2p.attacks ++; ship2p.shipsunk()}
+		if (a == "ship3p") { ship3p.attacks ++; ship3p.shipsunk()}
+		if (a == "ship4p") { ship4p.attacks ++; ship4p.shipsunk()}
+		if (a == "ship5p") { ship5p.attacks ++; ship5p.shipsunk()}
 		console.log(" attacks ship1p: " + ship1p.attacks + 
 			        " ship2p: " + ship2p.attacks + 
 					" ship3p: " + ship3p.attacks + 
@@ -434,8 +434,8 @@ var ship1p = { // -------------------------------------------two cells ships ---
 	orientation: "",
 	attacks: 0,
 	shipsunk(){
-		if (ship1p.attacks == 1){
-			console.log("ship1 got 2 attacks!")
+		if (ship1p.attacks == 2){
+			console.log("ship1p got 2 attacks!")
 			ship1p.sunk = true;
 		}
 	},
@@ -449,8 +449,8 @@ var ship2p = {
 	orientation: "",
 	attacks: 0,
 	shipsunk(){
-		if (ship2p.attacks == 1){
-			console.log("ship2 got 2 attacks!")
+		if (ship2p.attacks == 2){
+			console.log("ship2p got 2 attacks!")
 			ship2p.sunk = true;
 		}
 	},
@@ -463,8 +463,8 @@ var ship3p = {
 	orientation: "",
 	attacks: 0,
 	shipsunk(){
-		if (ship3p.attacks == 1){
-			console.log("ship3 got 2 attacks!")
+		if (ship3p.attacks == 2){
+			console.log("ship3p got 2 attacks!")
 			ship3p.sunk = true;
 		}
 	},
@@ -477,13 +477,13 @@ var ship4p = { // -------------------------------------------trhee cells ships -
 	orientation: "",
 	attacks: 0,
 	shipsunk(){
-		if (ship4p.attacks == 2){
-			console.log("ship4 got 3 attacks!")
+		if (ship4p.attacks == 3){
+			console.log("ship4p got 3 attacks!")
 			ship4p.sunk = true;
 		}
 	},
 	sunk: false,
-	sizeok4 (){if (ship4p.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
+	sizeok4 (){if (ship4p.size == 2){console.log("ship5p size ok")} else {console.log("ship5p size no ok")}}
 }
 var ship5p = {
 	name: "ship5",
@@ -492,13 +492,13 @@ var ship5p = {
 	orientation: "",
 	attacks: 0,
 	shipsunk(){
-		if (ship5p.attacks == 2){
-			console.log("ship5 got 3 attacks!")
+		if (ship5p.attacks == 3){
+			console.log("ship5p got 3 attacks!")
 			ship5p.sunk = true;
 		}
 	},
 	sunk: false,
-	sizeok5 (){if (ship5p.size == 2){console.log("ship5 size ok")} else {console.log("ship5 size no ok")}}
+	sizeok5 (){if (ship5p.size == 2){console.log("ship5p size ok")} else {console.log("ship5 size no ok")}}
 }
 
 

@@ -13,21 +13,21 @@ function boardship (){ // ----------------------------------create the board shi
  for (let i = 0; i < 11; i++) {
     var tr = document.createElement('tr'); // Create a row
     for (let j = 0; j < 11; j++) {
-        var td = document.createElement('td');// Create a cell
-				td.classList.add('cell');
-				td.id = [i, j]; // --------------------------------------------id will be a string
-				tr.appendChild(td);
-				if( i == 0 ) { //-------------------------------numbers first row
-						td.style.border = "none"; 
-						td.style.cursor = "none";
-						td.textContent = anum++;
-				}
-				if( j == 0 ) { //-------------------------------letters first colum
-						td.style.border = "none"; 
-						td.style.cursor = "none";
-						td.textContent = String.fromCharCode(ascii++);
-				}
-				if ( i == 0 && j == 0){ td.textContent = ""; } // corner
+        var td = document.createElement('td');// Create a cell	
+			td.classList.add('cell');
+			td.id = [i, j]; // --------------------------------------------id will be a string
+			tr.appendChild(td);
+			if( i == 0 ) { //-------------------------------numbers first row
+				td.className = 'cellrow';	
+				td.style.border = "none"; 
+				td.textContent = anum++;
+			}
+			if( j == 0 ) { //-------------------------------letters first colum
+				td.className = 'cellcol';
+				td.style.border = "none"; 
+				td.textContent = String.fromCharCode(ascii++);
+			}
+			if ( i == 0 && j == 0){ td.textContent = ""; } // corner
 		}
 		boardshipcont.appendChild(tr);
  }
@@ -40,21 +40,21 @@ function boardattack (){ // --------------------------------create board attack 
 	for (let i = 0; i < 11; i++) {
 		 var tr = document.createElement('tr'); // Create a row
 		 for (let j = 0; j < 11; j++) {
-				 var td = document.createElement('td');// Create a cell
-				 td.classList.add('cell2');
-				 tr.appendChild(td);
-				 if( i == 0 ) { //numbers first row
-						 td.style.border = "none"; 
-						 td.style.cursor = "none";
-						 td.textContent = anum++;
-				 }
-				 if( j == 0 ) { // letters first colum
-						 td.style.border = "none"; 
-						 td.style.cursor = "none";
-						 td.textContent = String.fromCharCode(ascii++);
-				 }
-				 td.id = [i, j]; //-----------------------------------------it will be a string
-				 if ( i == 0 && j == 0){ td.textContent = ""; } // corner
+			var td = document.createElement('td');// Create a cell
+			td.classList.add('cell2');
+			tr.appendChild(td);
+			if( i == 0 ) { //numbers first row
+				td.className = 'cell2row';	
+				td.style.border = "none"; 
+				td.textContent = anum++;
+			}
+			if( j == 0 ) { // letters first colum
+				td.className = 'cell2col';
+				td.style.border = "none"; 
+				td.textContent = String.fromCharCode(ascii++);
+			}
+			td.id = [i, j]; //-----------------------------------------it will be a string
+			if ( i == 0 && j == 0){ td.textContent = ""; } // corner
 		 }
 		 boardattack.appendChild(tr);
 	}
@@ -72,7 +72,7 @@ function clickattack (){  // -------------------------------listen clicks on boa
 			if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
 			if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
 			if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
-			console.log("click on boardattack cell0: " + cell0 + " cell1: " + cell1)
+			//console.log("click on boardattack cell0: " + cell0 + " cell1: " + cell1)
 			if (this.style.backgroundColor == ''){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell doesnt have color
 			else { console.log("no attack")}
 			this.style.backgroundColor = 'gray';
@@ -156,6 +156,22 @@ function shipblue (a, b) {  // -----------------------------paint cell with ligh
 }
 function shipblackgm (cell0, cell1) {  // ------------------paint pc shipboard cells with black when gets a attack-------------------------------
 	document.getElementById([cell0,cell1]).style.backgroundColor = 'black';
+	var classn = document.getElementById([cell0,cell1]).classList;
+	if (classn.length == 2) {
+		let a = classn[1];
+		//console.log("shipblackpc classn: " + a);
+		if (a == "ship1") { ship1.attacks ++; ship1.shipsunk()} //these if count attacks ok
+		if (a == "ship2") { ship2.attacks ++; ship2.shipsunk()}
+		if (a == "ship3") { ship3.attacks ++; ship3.shipsunk()}
+		if (a == "ship4") { ship4.attacks ++; ship4.shipsunk()}
+		if (a == "ship5") { ship5.attacks ++; ship5.shipsunk()}
+		console.log(" attacks ship1: " + ship1.attacks + 
+			        " ship2: " + ship2.attacks + 
+					" ship3: " + ship3.attacks + 
+					" ship4: " + ship4.attacks + 
+					" ship5: " + ship5.attacks)
+	} 
+	else { classn = classn[0] }	
 	//console.log("cello: " + a + "  " + " cell1: " + b)
 }
 function placeships(a, b) {  //-----------------------------place all ships-----------------------------------------
@@ -277,7 +293,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 			ship5.sizeok5();
 		}
 		test = 0
-		console.log("ship 51 x: " + x)
+		//console.log("ship 51 x: " + x)
 		if (x == 12) { 
 			document.body.appendChild(boardshippc());    //----------goes to set up pc board
 			document.body.appendChild(boardattackpc());  //----------goes to set up pc attack board
@@ -302,8 +318,8 @@ const ship1 = { // -----------------------------------------place two cells ship
 	orientation: "",
 	attacks: 0,
 	shipsunk(){
-		if (ship1.attacks == 1){
-			console.log("ship1 got 2 attacks!")
+		if (ship1.attacks < 3){
+			console.log("ship1 got " + ship1.attacks + " attacks!")
 			ship1.sunk = true;
 		}
 	},
@@ -317,8 +333,8 @@ const ship2 = {
 	orientation: "",
 	attacks: 0,
 	shipsunk(){
-		if (ship2.attacks == 1){
-			console.log("ship2 got 2 attacks!")
+		if (ship2.attacks < 3){
+			console.log("ship2 got " + ship2.attacks + " attacks!")
 			ship2.sunk = true;
 		}
 	},
@@ -331,8 +347,8 @@ const ship3 = {
 	orientation: "",
 	attacks: 0,
 	shipsunk(){
-		if (ship3.attacks == 1){
-			console.log("ship3 got 2 attacks!")
+		if (ship3.attacks < 3){
+			console.log("ship3 got " + ship3.attacks + " attacks!")
 			ship3.sunk = true;
 		}
 	},
@@ -345,8 +361,8 @@ const ship4 = { // -----------------------------------------trhee cells ships --
 	orientation: "",
 	attacks: 0,
 	shipsunk(){
-		if (ship4.attacks == 2){
-			console.log("ship4 got 2 attacks!")
+		if (ship4.attacks < 4){
+			console.log("ship4 got " + ship1.attacks + " attacks!")
 			ship4.sunk = true;
 		}
 	},
@@ -359,8 +375,8 @@ const ship5 = {
 	orientation: "",
 	attacks: 0,
 	shipsunk(){
-		if (ship5.attacks == 2){
-			console.log("ship5 got 2 attacks!")
+		if (ship5.attacks < 4){
+			console.log("ship5 got " + ship5.attacks + " attacks!")
 			ship5.sunk = true;
 		}
 	},

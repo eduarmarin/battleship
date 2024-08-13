@@ -22,7 +22,7 @@ clickattack()
 
 var windiv = document.createElement("div");
 windiv.classList.add("centered");
-document.boddy.append(windiv);
+document.body.appendChild(windiv);
 
 //document.body.appendChild(boardshippc());  //----------pc board
 //document.body.appendChild(boardattackpc());

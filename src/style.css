@@ -9,11 +9,37 @@
     /*border-style: solid;*/
     cursor: pointer;
 }
+.cellrow { /*gamer class row name*/
+  height: 30px;
+  width: 30px;
+  border: 1px solid black ;
+  /*border-style: solid;*/
+  cursor: pointer;
+}
+.cellcol { /*gamer class column name*/
+  height: 30px;
+  width: 30px;
+  border: 1px solid black ;
+  /*border-style: solid;*/
+  cursor: pointer;
+}
 
 .cell2 { /*pc class*/
   height: 30px;
   width: 30px;
   border: 1px solid blue ;
+  cursor: pointer;
+}
+.cell2row { /*pc class row name */
+  height: 30px;
+  width: 30px;
+  /*border: 1px solid blue ;*/
+  cursor: pointer;
+}
+.cell2col { /*pc class col name*/
+  height: 30px;
+  width: 30px;
+  /*border: 1px solid blue ;*/
   cursor: pointer;
 }
 
