@@ -55,10 +55,17 @@ table{
 }
 
 .centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  display: none;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 320px;
+  height: 260px;
+  position: absolute;
+  transition: 300ms;
+  z-index: 1;
+  visibility: hidden;  /* visible */ 
+  backdrop-filter: blur(2px);
+  font-size: 60px;
+  font-weight: bolder;
+  color: rgb(54, 47, 4);
 }

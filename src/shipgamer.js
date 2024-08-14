@@ -13,10 +13,9 @@ function boardship (){ // ----------------------------------create the board shi
  for (let i = 0; i < 11; i++) {
     var tr = document.createElement('tr'); // Create a row
     for (let j = 0; j < 11; j++) {
-        var td = document.createElement('td');// Create a cell	
+      let td = document.createElement('td');// Create a cell	
 			td.classList.add('cell');
 			td.id = [i, j]; // --------------------------------------------id will be a string
-			tr.appendChild(td);
 			if( i == 0 ) { //-------------------------------numbers first row
 				td.className = 'cellrow';	
 				td.style.border = "none"; 
@@ -27,6 +26,7 @@ function boardship (){ // ----------------------------------create the board shi
 				td.style.border = "none"; 
 				td.textContent = String.fromCharCode(ascii++);
 			}
+			tr.appendChild(td);
 			if ( i == 0 && j == 0){ td.textContent = ""; } // corner
 		}
 		boardshipcont.appendChild(tr);
@@ -64,7 +64,7 @@ function boardattack (){ // --------------------------------create board attack 
  }
 function clickattack (){  // -------------------------------listen clicks on board to attack----------------------------------
 	var celllist = document.getElementsByClassName('cell2');
-	for (let i = 12 ; i < celllist.length; i++) {
+	for (let i = 0 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
 			//console.log("attacck id: " + this.id);
 			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
@@ -83,8 +83,9 @@ function clickattack (){  // -------------------------------listen clicks on boa
 }
 function cellclick (){  // ---------------------------------listen clicks on board to place every ship----------------------------------
 	var celllist = document.getElementsByClassName('cell');
-	for (let i = 12 ; i < celllist.length; i++) {
+	for (let i = 0 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
+			//console.log("clicks: " + celllist[i].id);
 			test = 1; // this var is just a witnes 
 			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
 			var cell1 = +(celllist[i].id)[2];
@@ -176,6 +177,10 @@ function shipblackgm (cell0, cell1) {  // ------------------paint pc shipboard c
 }
 function placeships(a, b) {  //-----------------------------place all ships-----------------------------------------
 	if (x < 2) {  //------------------------------------placing ship1 --------------
+		console.log("gamer win!!!");
+		document.getElementsByClassName('centered').style.visibility = 'visible';
+		document.getElementsByClassName("centered").textContent("Gamer Win!!!");
+
 		if( ship1.size == 0 && test == 1){
 			shipblue (a, b);
 			document.getElementById([a, b]).classList.add("ship1");
