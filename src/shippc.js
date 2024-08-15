@@ -420,10 +420,8 @@ function placeships(a, b) {  //-------------------------------placing all ships-
 function pclost(){ //-----------------------------------------display gamer win
 	if (ship1p.sunk == true && ship2p.sunk == true && ship3p.sunk == true && ship4p.sunk == true && ship5p.sunk == true){
 		console.log("gamer win!!!");
-		document.getElementsByClassName("centered").style.display = "block";
-		document.getElementsByClassName("centered").textContent("Gamer Win!!!");
-		// createElement("h1", "You lost!", "p1");
-		// document.body.appendChild(p1);
+		document.getElementsById("centered").style.display = "visible";
+		document.getElementsById("centered").textContent= "Gamer Win!!!";
 	}
 }
 

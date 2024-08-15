@@ -177,9 +177,9 @@ function shipblackgm (cell0, cell1) {  // ------------------paint pc shipboard c
 }
 function placeships(a, b) {  //-----------------------------place all ships-----------------------------------------
 	if (x < 2) {  //------------------------------------placing ship1 --------------
-		console.log("gamer win!!!");
-		document.getElementById('centered').style.visibility = 'visible';
-		document.getElementById("centered").textContent = "Gamer Win!!!";
+		// console.log("gamer win!!!");
+		// document.getElementById('centered').style.visibility = 'visible';
+		// document.getElementById("centered").textContent = "Gamer Win!!!";
 
 		if( ship1.size == 0 && test == 1){
 			shipblue (a, b);
@@ -309,10 +309,8 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 function winner(){ //-------------------------------------display gamer lost
 	if (ship1.sunk == true && ship2.sunk == true && ship3.sunk == true && ship4.sunk == true && ship5.sunk == true){
 		console.log("gamer lost!!!")
-		document.getElementsByClassName("centered").style.display = "block";
-		document.getElementsByClassName("centered").textContent("Gamer lost!!!");
-		// createElement("h1", "You lost!", "p1");
-		// document.body.appendChild(p1);
+		document.getElementsById("centered").style.display = "visible";
+		document.getElementsById("centered").textContent = "Gamer lost!!!";
 	}
 }
 

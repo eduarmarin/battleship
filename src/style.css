@@ -73,8 +73,8 @@ table{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: auto;
-  height: auto;
+  width: max-content;
+  height: max-content;
   position: absolute;
   transition: 300ms;
   z-index: 1;
