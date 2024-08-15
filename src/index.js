@@ -3,27 +3,22 @@ import './style.css';
 import { boardship, cellclick, boardattack, clickattack} from './shipgamer.js'; 
 import { boardshippc, cellclickpc, boardattackpc, clickattackpc} from './shippc.js'; 
 
-function component() {
-    const element = document.createElement('div');
-    // Lodash, now imported by this script
-    element.innerHTML = _.join(['Hello', 'battleship!!!!!!'], ' ');
-    element.classList.add('hello');
-    return element;
-  }
+let element1 = document.createElement('div'); // genral container
+element1.classList.add('container');
 
-  function component2() {
-    console.log("element2");
-    let element = document.createElement('div');
-    //element.innerHTML = _.join(['Hello', 'battleship!!!!!!'], ' ');
-    element.classList.add('centered');
-    return element;
-  }
+let element2 = document.createElement('div'); // container for boards
+element2.classList.add('container2');
+
+let element3 = document.createElement('div'); // div for centered---hiden div
+element3.classList.add('centered');
+element3.id = 'centered';
   
-document.body.appendChild(component());
-document.body.appendChild(component2());
+document.body.appendChild(element1);
+element1.appendChild(element2);
+element2.appendChild(element3);
 
-document.body.appendChild(boardship());   //-------------gamer board
-document.body.appendChild(boardattack());
+element2.appendChild(boardship());   //-------------gamer board
+element2.appendChild(boardattack());
 cellclick();
 clickattack()
 

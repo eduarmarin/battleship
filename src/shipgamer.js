@@ -178,8 +178,8 @@ function shipblackgm (cell0, cell1) {  // ------------------paint pc shipboard c
 function placeships(a, b) {  //-----------------------------place all ships-----------------------------------------
 	if (x < 2) {  //------------------------------------placing ship1 --------------
 		console.log("gamer win!!!");
-		document.getElementsByClassName('centered').style.visibility = 'visible';
-		document.getElementsByClassName("centered").textContent("Gamer Win!!!");
+		document.getElementById('centered').style.visibility = 'visible';
+		document.getElementById("centered").textContent = "Gamer Win!!!";
 
 		if( ship1.size == 0 && test == 1){
 			shipblue (a, b);
@@ -300,8 +300,8 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		test = 0
 		//console.log("ship 51 x: " + x)
 		if (x == 12) { 
-			document.body.appendChild(boardshippc());    //----------goes to set up pc board
-			document.body.appendChild(boardattackpc());  //----------goes to set up pc attack board
+			element2.appendChild(boardshippc());    //----------goes to set up pc board
+			element2.appendChild(boardattackpc());  //----------goes to set up pc attack board
 			cellclickpc();                               //----------goes to random clicks function to place pc ships on board
 		}
 	}
