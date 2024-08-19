@@ -3,11 +3,12 @@ import './style.css';
 import { boardship, cellclick, boardattack, clickattack} from './shipgamer.js'; 
 import { boardshippc, cellclickpc, boardattackpc, clickattackpc} from './shippc.js'; 
 
-let element1 = document.createElement('div'); // genral container
+let element1 = document.createElement('div'); // general container
 element1.classList.add('container');
 
 let element2 = document.createElement('div'); // container for boards
 element2.classList.add('container2');
+element2.id = 'element2';
 
 let element3 = document.createElement('div'); // div for centered---hiden div
 element3.classList.add('centered');

@@ -69,7 +69,7 @@ function boardattackpc (){ // --------------------------------create board attac
 function clickattackpc (){  // -------------------------------random function to simulate clicks attacks----------------------------------
 	cell0 = Math.floor((Math.random() * 10) + 1); // random whole number between 1 and 10 (inclusive)
 	cell1 = Math.floor((Math.random() * 10) + 1);
-	if (document.getElementById([cell0,cell1,2]).style.backgroundColor =='') {
+	if (document.getElementById([cell0,cell1,2]).style.backgroundColor == '') {
 		document.getElementById([cell0,cell1,2]).style.backgroundColor = 'red';
 		//console.log("click random cell0: " + cell0 + " cell1; " + cell1)
 		shipblackgm(cell0, cell1); 
@@ -114,11 +114,12 @@ function shipblue (cell0, cell1) {  // -----------------------paint cell with li
 }
 function shipblackpc (cell0, cell1) {  // --------------------paint cell black them gets an attack-------------------------------
 	document.getElementById([cell0,cell1,4]).style.backgroundColor = 'black';
+	//if (document.getElementById([cell0,cell1,4]) == 'red'){document.getElementById([cell0,cell1]).style.backgroundColor = 'yellow';}
 	var classn = document.getElementById([cell0,cell1,4]).classList;
 	if (classn.length == 2) {
 		let a = classn[1];
 		//console.log("shipblackpc classn: " + a);
-		if (a == "ship1p") { ship1p.attacks ++; ship1p.shipsunk()} //these if count attacks ok
+		if (a == "ship1p") { ship1p.attacks ++; ship1p.shipsunk()} //these if counts attacks ok
 		if (a == "ship2p") { ship2p.attacks ++; ship2p.shipsunk()}
 		if (a == "ship3p") { ship3p.attacks ++; ship3p.shipsunk()}
 		if (a == "ship4p") { ship4p.attacks ++; ship4p.shipsunk()}
@@ -419,9 +420,9 @@ function placeships(a, b) {  //-------------------------------placing all ships-
 }
 function pclost(){ //-----------------------------------------display gamer win
 	if (ship1p.sunk == true && ship2p.sunk == true && ship3p.sunk == true && ship4p.sunk == true && ship5p.sunk == true){
-		console.log("gamer win!!!");
-		document.getElementsById("centered").style.display = "visible";
-		document.getElementsById("centered").textContent= "Gamer Win!!!";
+		console.log("gamer wins!!!");
+		document.getElementById('centered').style.visibility = 'visible';
+		document.getElementById("centered").textContent = "Gamer Wins!!!";
 	}
 }
 

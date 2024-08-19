@@ -73,9 +73,14 @@ function clickattack (){  // -------------------------------listen clicks on boa
 			if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
 			if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
 			//console.log("click on boardattack cell0: " + cell0 + " cell1: " + cell1)
-			if (this.style.backgroundColor == ''){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell doesnt have color
-			else { console.log("no attack")}
+			if (this.style.backgroundColor == ''){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell havent got clicks before
+			//else { console.log("no attack")}
 			this.style.backgroundColor = 'gray';
+			let hits = document.getElementById([cell0, cell1, 4]);
+			if (hits.style.backgroundColor == 'blue'){
+				console.log("hits: " + hits);
+//				this.style.backgroundColor = 'green';
+			}
 			winner();
 			clickattackpc(); //-------------------------pc turn - goes to random function to simulate clicks attacks pc-------
 		});
@@ -157,20 +162,20 @@ function shipblue (a, b) {  // -----------------------------paint cell with ligh
 }
 function shipblackgm (cell0, cell1) {  // ------------------paint pc shipboard cells with black when gets a attack-------------------------------
 	document.getElementById([cell0,cell1]).style.backgroundColor = 'black';
-	var classn = document.getElementById([cell0,cell1]).classList;
+	var classn = document.getElementById([cell0,cell1]).classList;  // get the class list
 	if (classn.length == 2) {
 		let a = classn[1];
 		//console.log("shipblackpc classn: " + a);
-		if (a == "ship1") { ship1.attacks ++; ship1.shipsunk()} //these if count attacks ok
+		if (a == "ship1") { ship1.attacks ++; ship1.shipsunk()} //these if counts attacks ok
 		if (a == "ship2") { ship2.attacks ++; ship2.shipsunk()}
 		if (a == "ship3") { ship3.attacks ++; ship3.shipsunk()}
 		if (a == "ship4") { ship4.attacks ++; ship4.shipsunk()}
 		if (a == "ship5") { ship5.attacks ++; ship5.shipsunk()}
 		console.log(" attacks ship1: " + ship1.attacks + 
-			        " ship2: " + ship2.attacks + 
-					" ship3: " + ship3.attacks + 
-					" ship4: " + ship4.attacks + 
-					" ship5: " + ship5.attacks)
+			                  " ship2: " + ship2.attacks + 
+					       				" ship3: " + ship3.attacks + 
+												" ship4: " + ship4.attacks + 
+												" ship5: " + ship5.attacks)
 	} 
 	else { classn = classn[0] }	
 	//console.log("cello: " + a + "  " + " cell1: " + b)
@@ -300,6 +305,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		test = 0
 		//console.log("ship 51 x: " + x)
 		if (x == 12) { 
+			let element2 = document.getElementById("element2");
 			element2.appendChild(boardshippc());    //----------goes to set up pc board
 			element2.appendChild(boardattackpc());  //----------goes to set up pc attack board
 			cellclickpc();                               //----------goes to random clicks function to place pc ships on board
@@ -308,9 +314,9 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 }
 function winner(){ //-------------------------------------display gamer lost
 	if (ship1.sunk == true && ship2.sunk == true && ship3.sunk == true && ship4.sunk == true && ship5.sunk == true){
-		console.log("gamer lost!!!")
-		document.getElementsById("centered").style.display = "visible";
-		document.getElementsById("centered").textContent = "Gamer lost!!!";
+		console.log("gamer win!!!");
+		document.getElementById('centered').style.visibility = 'visible';
+		document.getElementById("centered").textContent = "Gamer Win!!!";
 	}
 }
 
