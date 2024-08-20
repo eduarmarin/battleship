@@ -124,11 +124,11 @@ function shipblackpc (cell0, cell1) {  // --------------------paint cell black t
 		if (a == "ship3p") { ship3p.attacks ++; ship3p.shipsunk()}
 		if (a == "ship4p") { ship4p.attacks ++; ship4p.shipsunk()}
 		if (a == "ship5p") { ship5p.attacks ++; ship5p.shipsunk()}
-		console.log(" attacks ship1p: " + ship1p.attacks + 
-			        " ship2p: " + ship2p.attacks + 
-					" ship3p: " + ship3p.attacks + 
-					" ship4p: " + ship4p.attacks + 
-					" ship5p: " + ship5p.attacks)
+		// console.log(" attacks ship1p: " + ship1p.attacks + 
+		// 	        " ship2p: " + ship2p.attacks + 
+		// 			" ship3p: " + ship3p.attacks + 
+		// 			" ship4p: " + ship4p.attacks + 
+		// 			" ship5p: " + ship5p.attacks)
 	} 
 	else { classn = classn[0] }	
 }

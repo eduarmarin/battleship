@@ -66,22 +66,15 @@ function clickattack (){  // -------------------------------listen clicks on boa
 	var celllist = document.getElementsByClassName('cell2');
 	for (let i = 0 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
-			//console.log("attacck id: " + this.id);
 			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
 			var cell1 = +(celllist[i].id)[2];
 			if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
 			if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
 			if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
-			//console.log("click on boardattack cell0: " + cell0 + " cell1: " + cell1)
-			if (this.style.backgroundColor == ''){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell havent got clicks before
-			//else { console.log("no attack")}
 			this.style.backgroundColor = 'gray';
-			let hits = document.getElementById([cell0, cell1, 4]);
-			if (hits.style.backgroundColor == 'blue'){
-				console.log("hits: " + hits);
-//				this.style.backgroundColor = 'green';
-			}
+			if (document.getElementById([cell0, cell1, 4]).style.backgroundColor == 'blue'){this.style.backgroundColor = 'green';}
 			winner();
+			if (this.style.backgroundColor == ''){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell havent got clicks befor
 			clickattackpc(); //-------------------------pc turn - goes to random function to simulate clicks attacks pc-------
 		});
 	}
@@ -90,7 +83,7 @@ function cellclick (){  // ---------------------------------listen clicks on boa
 	var celllist = document.getElementsByClassName('cell');
 	for (let i = 0 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
-			//console.log("clicks: " + celllist[i].id);
+			console.log("cell td: " + this.tr);
 			test = 1; // this var is just a witnes 
 			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
 			var cell1 = +(celllist[i].id)[2];
@@ -171,11 +164,11 @@ function shipblackgm (cell0, cell1) {  // ------------------paint pc shipboard c
 		if (a == "ship3") { ship3.attacks ++; ship3.shipsunk()}
 		if (a == "ship4") { ship4.attacks ++; ship4.shipsunk()}
 		if (a == "ship5") { ship5.attacks ++; ship5.shipsunk()}
-		console.log(" attacks ship1: " + ship1.attacks + 
-			                  " ship2: " + ship2.attacks + 
-					       				" ship3: " + ship3.attacks + 
-												" ship4: " + ship4.attacks + 
-												" ship5: " + ship5.attacks)
+		// console.log(" attacks ship1: " + ship1.attacks + 
+		// 	                  " ship2: " + ship2.attacks + 
+		// 			       				" ship3: " + ship3.attacks + 
+		// 										" ship4: " + ship4.attacks + 
+		// 										" ship5: " + ship5.attacks)
 	} 
 	else { classn = classn[0] }	
 	//console.log("cello: " + a + "  " + " cell1: " + b)
