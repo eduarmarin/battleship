@@ -73,8 +73,10 @@ function clickattack (){  // -------------------------------listen clicks on boa
 			if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
 			this.style.backgroundColor = 'gray';
 			if (document.getElementById([cell0, cell1, 4]).style.backgroundColor == 'blue'){this.style.backgroundColor = 'green';}
+			shipblackpc(cell0, cell1);
+			// if (this.className != 'hit'){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell havent got clicks before
+			// this.className = "hit";
 			winner();
-			if (this.style.backgroundColor == ''){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell havent got clicks befor
 			clickattackpc(); //-------------------------pc turn - goes to random function to simulate clicks attacks pc-------
 		});
 	}
