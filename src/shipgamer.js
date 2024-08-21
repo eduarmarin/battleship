@@ -71,13 +71,14 @@ function clickattack (){  // -------------------------------listen clicks on boa
 			if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
 			if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
 			if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
-			this.style.backgroundColor = 'gray';
-			if (document.getElementById([cell0, cell1, 4]).style.backgroundColor == 'blue'){this.style.backgroundColor = 'green';}
-			shipblackpc(cell0, cell1);
-			// if (this.className != 'hit'){shipblackpc(cell0, cell1);} // goes to shipboardpc if the cell havent got clicks before
-			// this.className = "hit";
+			
+			if (this.style.backgroundColor == ''){ // goes to shipboardpc if the cell havent got clicks before
+				this.style.backgroundColor = 'gray';
+				if (document.getElementById([cell0, cell1, 4]).style.backgroundColor == 'blue'){this.style.backgroundColor = 'green';}
+				shipblackpc(cell0, cell1);
+			} 
 			winner();
-			clickattackpc(); //-------------------------pc turn - goes to random function to simulate clicks attacks pc-------
+			clickattackpc(); //-------------------------pc turn - goes to random function to simulate pc clicks attacks -------
 		});
 	}
 }
