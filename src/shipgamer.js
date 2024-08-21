@@ -157,7 +157,9 @@ function shipblue (a, b) {  // -----------------------------paint cell with ligh
 	document.getElementById([a,b]).style.backgroundColor = 'lightblue';
 }
 function shipblackgm (cell0, cell1) {  // ------------------paint pc shipboard cells with black when gets a attack-------------------------------
-	document.getElementById([cell0,cell1]).style.backgroundColor = 'black';
+	if (document.getElementById([cell0, cell1]).style.backgroundColor == 'lightblue'){
+		document.getElementById([cell0, cell1]).style.backgroundColor = 'green'	
+	} else {document.getElementById([cell0,cell1]).style.backgroundColor = 'gray'}
 	var classn = document.getElementById([cell0,cell1]).classList;  // get the class list
 	if (classn.length == 2) {
 		let a = classn[1];
