@@ -1,7 +1,8 @@
 import _, { divide } from 'lodash';
 import './style.css';
 import { boardship, cellclick, boardattack, clickattack} from './shipgamer.js'; 
-import { boardshippc, cellclickpc, boardattackpc, clickattackpc} from './shippc.js'; 
+//import { boardshippc, cellclickpc, boardattackpc, clickattackpc} from './shippc.js'; 
+import { navbar, footer} from './navbarfooter.js';
 
 let element1 = document.createElement('div'); // general container
 element1.classList.add('container');
@@ -15,7 +16,9 @@ element3.classList.add('centered');
 element3.id = 'centered';
   
 document.body.appendChild(element1);
+element1.appendChild(navbar);
 element1.appendChild(element2);
+element1.appendChild(footer);
 element2.appendChild(element3);
 
 element2.appendChild(boardship());   //-------------gamer board
