@@ -38,7 +38,7 @@ navbar.appendChild(tittle);
 var footer = document.createElement('footer');
 centeritems(footer);
 footer.style.width = "100%";    
-footer.style.position = "absolute";    
+//footer.style.position = "absolute";    
 footer.style.height = "120px";
 footer.style.background = "#3C0D03";
 //footer.style.color = "white";
@@ -46,11 +46,11 @@ footer.style.flexDirection = "column";
 
 var gingerm = document.createElement('a');
 centeritems(gingerm);
-gingerm.textContent = '\xA9 2023 Ginger Media';
+gingerm.textContent = '\xA9 2024 Ginger Media';
 //gingerm.style.margin = "0px"
 gingerm.style.color = "white";
 gingerm.style.textDecoration = "none";
-gingerm.setAttribute("href","https://github.com/eduarmarin");
+gingerm.setAttribute("href","https://github.com/eduarmarin/battleship");
 gingerm.appendChild(image2);
 
 var linkm = document.createElement('a');

@@ -18,11 +18,11 @@ element3.id = 'centered';
 document.body.appendChild(element1);
 element1.appendChild(navbar);
 element1.appendChild(element2);
-element1.appendChild(footer);
 element2.appendChild(element3);
 
 element2.appendChild(boardship());   //-------------gamer board
 element2.appendChild(boardattack());
+element1.appendChild(footer);
 cellclick();
 clickattack()
 
