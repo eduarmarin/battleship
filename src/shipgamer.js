@@ -4,7 +4,7 @@ import { clickattackpc, cellclickpc, boardshippc, boardattackpc, shipblackpc } f
 
 var x = 0; // true clicks counter
 var test = 0; // this var is just like a witnes for cellclicks function
-var perp = []; // pern var in third three cell ship
+var perp = []; // perp var in third three cell ship
 var anum = 0; // var to enumerate the first row
 var ascii = 64; // var to put letters in the first column
 
