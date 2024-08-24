@@ -42,7 +42,6 @@ function boardattack (){ // --------------------------------create board attack 
 		 for (let j = 0; j < 11; j++) {
 			var td = document.createElement('td');// Create a cell
 			td.classList.add('cell2');
-			//td.removeAttribute("onclick");
 			tr.appendChild(td);
 			if( i == 0 ) { //numbers first row
 				td.className = 'cell2row';	
@@ -67,19 +66,21 @@ function clickattack (){  // -------------------------------listen clicks on boa
 	var celllist = document.getElementsByClassName('cell2');
 	for (let i = 0 ; i < celllist.length; i++) {
 		celllist[i].addEventListener('click', function (e) { 
-			var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
-			var cell1 = +(celllist[i].id)[2];
-			if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
-			if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
-			if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
-			
-			if (this.style.backgroundColor == ''){ // goes to shipboardpc if the cell havent got clicks before
-				this.style.backgroundColor = 'gray';
-				if (document.getElementById([cell0, cell1, 4]).style.backgroundColor == 'blue'){this.style.backgroundColor = 'green';}
-				shipblackpc(cell0, cell1);
-			} 
-			winner();
-			clickattackpc(); //-------------------------pc turn - goes to random function to simulate pc clicks attacks -------
+			if (test == 10) { 
+				var cell0 = +(celllist[i].id)[0];      // first, take the string and convert to number
+				var cell1 = +(celllist[i].id)[2];
+				if ((celllist[i].id).length == 4 && (celllist[i].id)[1] == ","){cell1 = 10}
+				if ((celllist[i].id).length == 4 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = +(celllist[i].id)[3];}	
+				if ((celllist[i].id).length == 5 && (celllist[i].id)[2] == ","){cell0 = 10; cell1 = 10}
+				
+				if (this.style.backgroundColor == ''){ // goes to shipboardpc if the cell havent got clicks before
+					this.style.backgroundColor = 'gray';
+					if (document.getElementById([cell0, cell1, 4]).style.backgroundColor == 'blue'){this.style.backgroundColor = 'green';}
+					shipblackpc(cell0, cell1);
+				} 
+				winner();
+				clickattackpc(); //-------------------------pc turn - goes to random function to simulate pc clicks attacks -------
+			}
 		});
 	}
 }
@@ -305,7 +306,7 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		//console.log("ship 51 x: " + x)
 		if (x == 12) { 
 			test = 10;
-			console.log("test: " + test) 
+			//console.log("test: " + test) 
 			let element2 = document.getElementById("element2");
 			element2.appendChild(boardshippc());    //----------goes to set up pc board
 			element2.appendChild(boardattackpc());  //----------goes to set up pc attack board
