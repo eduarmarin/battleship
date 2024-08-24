@@ -42,6 +42,7 @@ function boardattack (){ // --------------------------------create board attack 
 		 for (let j = 0; j < 11; j++) {
 			var td = document.createElement('td');// Create a cell
 			td.classList.add('cell2');
+			//td.removeAttribute("onclick");
 			tr.appendChild(td);
 			if( i == 0 ) { //numbers first row
 				td.className = 'cell2row';	
@@ -303,6 +304,8 @@ function placeships(a, b) {  //-----------------------------place all ships-----
 		test = 0
 		//console.log("ship 51 x: " + x)
 		if (x == 12) { 
+			test = 10;
+			console.log("test: " + test) 
 			let element2 = document.getElementById("element2");
 			element2.appendChild(boardshippc());    //----------goes to set up pc board
 			element2.appendChild(boardattackpc());  //----------goes to set up pc attack board

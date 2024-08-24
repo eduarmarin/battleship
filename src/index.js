@@ -6,6 +6,7 @@ import { navbar, footer} from './navbarfooter.js';
 
 let element1 = document.createElement('div'); // general container
 element1.classList.add('container');
+centeritems(element1);
 
 let element2 = document.createElement('div'); // container for boards
 element2.classList.add('container2');
@@ -16,6 +17,8 @@ element3.classList.add('centered');
 element3.id = 'centered';
   
 document.body.appendChild(element1);
+document.body.style.width = "100%";    
+centeritems(document.body);
 element1.appendChild(navbar);
 element1.appendChild(element2);
 element2.appendChild(element3);
@@ -26,6 +29,11 @@ element1.appendChild(footer);
 cellclick();
 clickattack()
 
+function centeritems(item){
+  item.style.display = "flex";
+  item.style.alignItems = "center";
+  item.style.justifyContent = "center";
+}
 
 //document.body.appendChild(boardshippc());  //----------pc board
 //document.body.appendChild(boardattackpc());

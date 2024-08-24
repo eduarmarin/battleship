@@ -1,10 +1,9 @@
 
-import { xor } from 'lodash';
 import odin from './odin.png';
 const odinlogo = new Image();
 odinlogo.src = odin;
 odinlogo.style.width = "100px";
-odinlogo.style.paddingLeft = "8px"
+//odinlogo.style.paddingLeft = "8px"
 
 import mail from './envelope-fill.svg';
 const image = new Image();
@@ -16,7 +15,7 @@ import git from './github.svg';
 const image2 = new Image();
 image2.src = git;
 image2.style.width = "30px";
-image2.style.marginLeft = "10px";
+//image2.style.marginLeft = "10px";
 
 var navbar = document.createElement('nav'); // container for boards
 navbar.style.minWidth = "100%";
